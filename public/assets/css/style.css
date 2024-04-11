@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'wonder'; 
-    src: url('assets/css/fonts/Alice_in_Wonderland_3.ttf') format('truetype');
+    src: url('fonts/Alice_in_Wonderland_3.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'storm';
-    src: url('assets/css/fonts/White_Storm.otf') format('opentype');
+    src: url('fonts/White_Storm.otf') format('opentype');
 }
 
   
@@ -13,8 +13,13 @@
 
 body{
     background-color: #DBC8AC;
-
+    font-family: 'wonder';
+        background-image: url('../images/pngwing1.png');
+        background-position: top right;
+        background-repeat: no-repeat;
+    
 }
+
 
 a {
     color: #B73E3E; 
@@ -49,9 +54,18 @@ a:hover, a:focus, a:active {
     color: #EDDBC0;
     position: relative;
     display: inline-block;
-    background-image: linear-gradient(270deg, #DD5353 0%, #B73E3E 100%);
+    background-image:  url('../images/button.png'),linear-gradient(270deg, #DD5353 0%, #B73E3E 100%);
+    text-align: right;
+    background-position: left; 
+    background-repeat: no-repeat; 
+    background-size: 50%, cover;
+  
     /* -webkit-background-clip: text;
     -webkit-text-fill-color: transparent; */
+}
+.btn.gradient span {
+
+    margin-left: 30px;
 }
 
 .btn.gradient-bg {
@@ -181,5 +195,195 @@ a:hover, a:focus, a:active {
         color: #B73E3E;
     }
 }
+
+.logo-container {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.logo {
+    max-width: 150px;
+    
+}
+
+
+.forma{
+    border-radius: 37px;
+    width: auto;
+background: linear-gradient(to bottom,  #511B1B, #B74E3E);
+color: #EDDBC0;
+font-size: large;
+
+
+
+
+}
+
+.input{
+
+        background-color: rgba(0, 0, 0, 0.5);
+        border: none;
+        border-radius: 10px;
+
+}
+
+.title{
+    color: #B73E3E;
+    font-size: 130px;
+
+}
+
+
+
+/* post */
+
+  
+  .panel {
+    position: relative;
+    background: rgba(0, 0, 0, 0.5);;
+  }
+  
+  .image-wrapper {
+    position: relative;
+    display: block;
+    overflow: hidden;
+  }
+  
+  /* .blog-container a:not(.btn) {
+    color: #999;
+    transition: all .2s linear;
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    -ms-transition: all .2s linear;
+    -o-transition: all .2s linear;
+  } */
+  
+  .image-wrapper img {
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+    -moz-transition: all .4s ease;
+    -ms-transition: all .4s ease;
+    -o-transition: all .4s ease;
+  }
+  
+  .image-wrapper:hover .image-overlay {
+    opacity: .9;
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+    -moz-transition: all .4s ease;
+    -ms-transition: all .4s ease;
+    -o-transition: all .4s ease;
+    transform: translateX(0%);
+    -webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    -o-transform: translateX(0%);
+  }
+  
+  .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+    -moz-transition: all .4s ease;
+    -ms-transition: all .4s ease;
+    -o-transition: all .4s ease;
+  }
+  
+  .post-like {
+    float: right;
+    cursor: pointer;
+  }
+  
+  .headline {
+    margin: 20px 0;
+    padding: 5px 0 10px;
+    border-bottom: 1px solid #B73E3E;
+    font-weight: 500;
+  }
+  
+  h4, .h4 {
+    font-size: 18px;
+  }
+  
+  .media, .media-body {
+    overflow: hidden;
+    zoom: 1;
+  }
+
+  .text{
+    color: #B73E3E;
+  }
+
+
+  #selectedTagsContainer {
+    margin-top: 10px;
+  }
+
+  #selectedTagsContainer > div {
+    display: inline-block;
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+
+  #selectedTagsContainer > div > button {
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 12px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+
+
+
+  .form-group label {
+    font-weight: bold;
+  }
+
+  .form-control {
+    border-color: #ced4da;
+    border-radius: 5px;
+  }
+
+  .btn-primary {
+    background-color: #0079d3;
+    border-color: #0079d3;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+
+  .btn-primary:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 211, 0.5);
+  }
+
+  .btn-primary:active {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    transform: translateY(1px);
+  }
+
+  .form-control:focus {
+    border-color: #0079d3;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 211, 0.25);
+  }
+
 
 

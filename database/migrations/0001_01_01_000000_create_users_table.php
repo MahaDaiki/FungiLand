@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('profilepic')->nullable();
             $table->string('description')->nullable();
             $table->string('password');
+            $table->enum('role', ['user', 'admin'])->default('user');
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();
