@@ -6,13 +6,36 @@
 
 </head>
 <body>
-
+  
   <div class="container mt-5 ">
+
     <div class="row">
+      @if ($errors->any())
+      <div class="alert alert-danger">
+          <strong> Validation Error!</strong>
+          <ul>
+              @foreach ($errors->all() as $error )
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+    @endif
+    @if(session()->has('success'))
+      <div class="alert alert-success mt-4">
+          {{ session()->get('success') }}
+      </div>
+    @endif
+    @if(session()->has('error'))
+      <div class="alert alert-danger mt-4">
+          {{ session()->get('error') }}
+      </div>
+    @endif
+    
       <div class="col-md-8 ">
+
         <div class="forma p-3">
         <h2 class="mb-4 text-center">Create Post</h2>
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('posts.add') }}" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="form-group">
             <label for="postType">Type</label>
@@ -39,6 +62,7 @@
             </div>
             <div class="form-group col-md-6">
               <label for="postTags">Tags</label>
+              <div id="selectedTagsContainer"></div>
               <select class="form-control" id="postTags" name="tag_ids[]" multiple>
                 @foreach($tags as $tag)
                   <option value="{{ $tag->id }}">{{ $tag->name }}</option>
@@ -56,7 +80,7 @@
           </div>
          
           <div class="form-group text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary"><img src="assets/images/flower.png" width="50" class="spin" alt="">Submit<img src="assets/images/flower.png" width="40" class="spin"  alt=""></button>
           </div>
         </form>
       </div>
@@ -80,13 +104,12 @@
         const selectedTagsContainer = document.getElementById('selectedTagsContainer');
   
         selectElement.addEventListener('change', function() {
-            selectedTagsContainer.innerHTML = '';
-  
             Array.from(this.selectedOptions).forEach(option => {
                 const tagDiv = document.createElement('div');
+                tagDiv.classList.add('selected-tag');
                 tagDiv.textContent = option.text;
                 const removeButton = document.createElement('button');
-                removeButton.textContent = 'Remove';
+                removeButton.textContent = 'X';
                 removeButton.onclick = function() {
                     option.selected = false;
                     tagDiv.remove();

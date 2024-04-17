@@ -13,7 +13,7 @@
 </head>
 <body>    
     <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{{ '/' }}">
           <img src="assets/images/logo.png" width="100" height="100" class="d-inline-block align-top" alt="Logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,14 +24,32 @@
         <div class="collapse navbar-collapse site-navigation" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active ">
-              <a class="nav-link" href="#">Posts</a>
+              <a class="nav-link" href="{{ '/posts' }}">Posts</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Other</a>
-            </li> 
-            <button class="btn gradient ml-5 float-right my-2 my-sm-0" type="button">Profile</button>
-          </ul>
          
+            <li class="nav-item">
+              <a class="nav-link" href="{{ '/create' }}">+</a>
+            </li> 
+           @auth
+            <li class="nav-item">
+              <form action="{{ route('logout') }}" method="POST">
+                  @csrf
+                  <button type="submit" class="btn gradient ml-2">Logout</button>
+              </form>
+          </li> 
+            <a href="{{ '/profile'}}">
+            <button class="btn gradient ml-5 float-right my-2 my-sm-0" type="button">   <img width="40" class="mr-3 spin" src="assets/images/button.png" alt="">Profile</button></a>
+          @else
+          <li class="nav-item">
+              <a class="nav-link" href="{{ route('login') }}">Login</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{{ route('register') }}">Register</a>
+          </li>
+     
+         
+          </ul>
+              @endauth
         </div>
         </nav>
       

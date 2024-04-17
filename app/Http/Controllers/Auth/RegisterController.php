@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Register;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -14,25 +15,18 @@ class RegisterController extends Controller
         return view('Auth.register');
     }
 
-    public function register(Request $request)
+    public function register(Register $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            // 'profilepic' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
-        ]);
-    
-        // $profilePicPath = null;
-        // if ($request->hasFile('profilepic')) {
-        //     $profilePicPath = $request->file('profilepic')->store('profilepic', 'public');
-        // }
+        $profilePicPath = null;
+        if ($request->hasFile('profilepic')) {
+            $profilePicPath = $request->file('profilepic')->store('assets/images', 'public');
+        }
     
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            // 'profilepic' => $profilePicPath, 
+            'profilepic' => $profilePicPath, 
         ]);
     
         return redirect('/login')->with('success', 'Registration successful. Please log in.');

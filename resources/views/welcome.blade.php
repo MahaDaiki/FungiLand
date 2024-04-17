@@ -24,8 +24,8 @@
 
 
  <div class=" text-center">
-  <h3>Discover And Share The Wonders Of Nature At FungiLand</h3>
-  <h5>Your Cozy Gateaway To a Community Overflowing With Passion and Comfort!</h5>
+  <h3 class="h3">Discover And Share The Wonders Of Nature At FungiLand</h3>
+  <h5 class="h5">Your Cozy Gateaway To a Community Overflowing With Passion and Comfort!</h5>
   <img src="assets/images/homebg2.png" class="img-fluid" style="width: 100vw; height: 100vh; object-fit: cover;" alt="Welcome Image 2">
 
 
