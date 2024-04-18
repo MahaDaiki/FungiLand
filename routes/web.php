@@ -3,10 +3,14 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
+
+
 
 
 
@@ -41,5 +45,17 @@ Route::middleware(['auth'])->group(function () {
 
 Route::middleware([AdminMiddleware::class])->group(function () {
     Route::get('/admin',[AdminController::class, 'index'])->name('admin.index');
+    Route::get('/categories/create', [CategoryController::class,'create'])->name('categories.create');
+Route::post('/categories',[CategoryController::class,'store'])->name('categories.store');
+Route::get('/categories/{category}/edit', [CategoryController::class,'edit'])->name('categories.edit');
+Route::put('/categories/{category}', [CategoryController::class,'update'])->name('categories.update');
+Route::delete('/categories/{category}', [CategoryController::class,'destroy'])->name('categories.destroy');
+
+Route::get('/tags/create', [TagController::class,'create'])->name('tags.create');
+Route::post('/tags', [TagController::class,'store'])->name('tags.store');
+Route::get('/tags/{tag}/edit', [TagController::class,'edit'])->name('tags.edit');
+Route::put('/tags/{tag}', [TagController::class,'update'])->name('tags.update');
+Route::delete('/tags/{tag}', [TagController::class,'destroy'])->name('tags.destroy');
+
 });
 

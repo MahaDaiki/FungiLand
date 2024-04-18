@@ -15,26 +15,7 @@
             <div class="card forma mb-5">
                 
                 <div class="card-body col-10 mx-auto mt-4">
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <strong> Validation Error!</strong>
-                        <ul>
-                            @foreach ($errors->all() as $error )
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                @if(session()->has('success'))
-                    <div class="alert alert-success mt-4">
-                        {{ session()->get('success') }}
-                    </div>
-                @endif
-                @if(session()->has('error'))
-                    <div class="alert alert-danger mt-4">
-                        {{ session()->get('error') }}
-                    </div>
-                @endif
+                    @include('layouts.errorhandle')
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row">

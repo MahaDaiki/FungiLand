@@ -64,9 +64,9 @@
                 </div>
             </div>
         </div>
-    </div>
-    
+    </div> 
 </section>
+@include('layouts.errorhandle')
 @forelse ($posts as $post)
 <div class="">
     <div class="row">

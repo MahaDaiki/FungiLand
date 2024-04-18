@@ -29,9 +29,20 @@ body{
         background-image: url('../images/pngwing1.png');
         background-position: top right;
         background-repeat: no-repeat;
+        cursor: url('../images/cursor.png'), auto;
+        
     
 }
+.cursor {
+  cursor: url('../images/cursor.png'), auto;
+}
 
+/* .cursor:hover {
+  cursor: url('../images/hover.png'), auto;
+}  */
+.change:hover{
+  cursor: url('../images/hover.png'), auto;
+}
 .h3{
   color: #B73E3E;
   font-size: 6rem;
@@ -50,6 +61,7 @@ a:visited {
 
 a:hover, a:focus, a:active {
     color: #B73E3E; 
+    cursor: url('../images/hover.png'), auto;
 }
 
 .btn {
@@ -61,8 +73,14 @@ a:hover, a:focus, a:active {
     line-height: 1;
     color: #232127;
     
+    
 }
-
+.btn:hover{
+  cursor: url('../images/hover.png'), auto; 
+}
+.btn.gradient:hover{
+  cursor: url('../images/hover.png'), auto; 
+}
 .btn.gradient {
   padding: 1px 10px;
   border: 2px solid #B73E3E;
@@ -171,8 +189,8 @@ a:hover, a:focus, a:active {
 .site-navigation ul {
     position: fixed;
     top: 0;
-    right: auto;
-    z-index: 9999;
+    right: 0;
+    /* z-index: 9999; */
     width: 320px;
     max-width: 80%;
     height: 100vh;
@@ -183,9 +201,9 @@ a:hover, a:focus, a:active {
     transition: all 0.35s;
 }
 
-.site-navigation.show ul {
+/* .site-navigation.show ul {
     right: 0;
-}
+} */
 
 .site-navigation ul li {
     display: block;

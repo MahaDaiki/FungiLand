@@ -9,8 +9,9 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function index(){
-        $categories = Category::all();
-        $tags = Tag::all();
+        $categories = Category::paginate(10,['*'],'category');
+        $tags = Tag::paginate(10,['*'],'tags');
+        
         return view('admin.dashboard',compact('categories','tags'));
     }
 }

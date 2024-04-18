@@ -9,7 +9,7 @@
         <hr>
     </div>
     <div class="row">
-        <!-- Main posts -->
+        @include('layouts.errorhandle')
         <div class="col-md-8 mb-4">
             <div class="panel blog-container">
                 <div class="panel-body">
@@ -36,7 +36,7 @@
             </div>
         </div>
         
-        <!-- Popular posts -->
+{{-- categories here --}}
         <div class="col-md-4">
             <h4 class="headline text h2">
                 POPULAR POST

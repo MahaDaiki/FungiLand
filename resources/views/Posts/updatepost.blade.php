@@ -6,26 +6,7 @@
 
 <div class="container mt-5">
     <div class="row">
-        @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong> Validation Error!</strong>
-            <ul>
-                @foreach ($errors->all() as $error )
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-      @endif
-      @if(session()->has('success'))
-        <div class="alert alert-success mt-4">
-            {{ session()->get('success') }}
-        </div>
-      @endif
-      @if(session()->has('error'))
-        <div class="alert alert-danger mt-4">
-            {{ session()->get('error') }}
-        </div>
-      @endif
+        @include('layouts.errorhandle') 
         <div class="col-md-8">
             <div class="forma p-3">
                 <h2 class="mb-4 text-center">Edit Post</h2>
