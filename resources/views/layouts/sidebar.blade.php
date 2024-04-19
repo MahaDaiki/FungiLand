@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/sidebar.css')}}">    
     <title>Document</title>
@@ -17,10 +18,10 @@
           </div>
           <ul class="sidebar-nav">
             <li class="active">
-              <a href="#"><i class="fa fa-home"></i>Home</a>
+              <a href="{{ '/admin' }}"><i class="fa fa-home"></i>Manage</a>
             </li>
             <li>
-              <a href="#"><i class="fa fa-plug"></i>Plugins</a>
+              <a href="{{ '/stats' }}"><i class="fa fa-plug"></i>statistics</a>
             </li>
             <li>
               <a href="#"><i class="fa fa-user"></i>Users</a>
@@ -32,7 +33,7 @@
           <nav class="navbar navbar-inverse">
             <div class="container-fluid">
               <div class="navbar-header">
-                <a href="#" class="navbar-brand" id="sidebar-toggle"><img src="{{ asset('assets/images/rabbbit.png') }}" width="70" alt="="></a>
+                <a href="#" class="navbar-brand" id="sidebar-toggle"><img src="{{ asset('assets/images/rabbbit.png') }}" class="rabbit " width="70" alt="="></a>
               </div>
             </div>
           </nav>
@@ -40,6 +41,7 @@
 
       
       </div>
+      
 <script>
         const $button  = document.querySelector('#sidebar-toggle');
 const $wrapper = document.querySelector('#wrapper');
@@ -49,5 +51,7 @@ $button.addEventListener('click', (e) => {
   $wrapper.classList.toggle('toggled');
 });
       </script>
+
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>

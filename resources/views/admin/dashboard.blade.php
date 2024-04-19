@@ -28,10 +28,12 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
+                                        <th>Count</th>
                                         <th><button type="button" class=" change btn-primary" data-toggle="modal" data-target="#addCategoryModal">
                                            <img src="assets/images/add.jpg" width="50" alt="add">
                                         </button>
                                         </th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -39,6 +41,7 @@
                                     <tr>
                                         <td>{{ $categorie->id }}</td>
                                         <td class="fs-4">{{ $categorie->name }}</td>
+                                        <td class="fs-4 text-center" >{{ $categorie->posts_count }}</td>
                                         <td>
                                             <button class=" change btn-primary" data-toggle="modal" data-target="#editCategoryModal{{ $categorie->id }}"><img src="assets/images/edit.jpg" alt="edit" width="40"></button>
                                             <button class=" btn-danger change btn-sm" data-toggle="modal" data-target="#deleteCategoryModal{{ $categorie->id }}">X</button>
@@ -136,6 +139,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
+                                        <th>Count</th>
                                         <th><button type="button" class=" btn-primary change" data-toggle="modal" data-target="#addTagModal">
                                             <img src="assets/images/add.jpg" width="50" alt="add">
                                         </button>
@@ -147,6 +151,7 @@
                                     <tr>
                                         <td>{{ $tag->id }}</td>
                                         <td class="fs-4">{{ $tag->name }}</td>
+                                        <td class="fs-4 text-center" >{{ $tag->posts_count }}</td>
                                         <td>
                                             <button class="btn-primary change" data-toggle="modal" data-target="#editTagModal{{ $tag->id }}"><img src="assets/images/edit.jpg" width="40" alt="edit"></button>
                                             <button class=" btn-danger change" data-toggle="modal" data-target="#deleteTagModal{{ $tag->id }}">x</button>

@@ -312,7 +312,8 @@ margin-top:   3rem;
   
   .panel {
     position: relative;
-    background: rgba(0, 0, 0, 0.5);;
+    background: #EDDBC0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
   .image-wrapper {
@@ -461,10 +462,14 @@ margin-top:   3rem;
     padding: 100px 0;
     position: relative;
 }
-
+.rabbit{
+  max-width: 200px;
+}
 img {
     max-width: 100%;
 }
+
+
 img {
     vertical-align: middle;
     border-style: none;
@@ -612,4 +617,26 @@ mark {
 
 input[type="file"].d-none {
   display: none;
+}
+ 
+
+/* stats */
+.card {
+  margin-bottom: 20px;
+}
+.chart-container {
+  position: relative;
+  margin: auto;
+  height: 300px;
+  width: 80%;
+}
+
+
+
+/* like */
+.like{
+  background: none;
+  border: none;
+ font-size: 1.2rem;
+ 
 }

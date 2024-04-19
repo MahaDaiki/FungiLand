@@ -13,7 +13,17 @@ use Illuminate\Support\Facades\Storage;
 class PostController extends Controller
 {
     public function index(){
-        return view('posts'); 
+
+        $mostcategories = Category::withCount('posts')
+        ->orderByDesc('posts_count')
+        ->limit(5) 
+        ->get();
+        $mosttags = Tag::withCount('posts')
+        ->orderByDesc('posts_count')
+        ->limit(5) 
+        ->get();
+        $posts = Post::paginate(5);
+        return view('posts',compact('mosttags','mostcategories','posts')); 
     }
 
     public function postbyuser(){

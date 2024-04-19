@@ -4,11 +4,15 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LikesController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\StatistiquesController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
+
+
 
 
 
@@ -40,6 +44,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
     Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update');
     Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+    Route::post('/posts/{post}/like', [LikesController::class, 'like'])->name('posts.like');
+Route::delete('/posts/{post}/unlike', [LikesController::class, 'unlike'])->name('posts.unlike');
+
 });
 
 
@@ -56,6 +63,11 @@ Route::post('/tags', [TagController::class,'store'])->name('tags.store');
 Route::get('/tags/{tag}/edit', [TagController::class,'edit'])->name('tags.edit');
 Route::put('/tags/{tag}', [TagController::class,'update'])->name('tags.update');
 Route::delete('/tags/{tag}', [TagController::class,'destroy'])->name('tags.destroy');
+
+Route::get('/stats',[StatistiquesController::class, 'index'])->name('admin.stats');
+// Route::get('/monthly-statistics', [StatistiquesController::class, 'monthlyStatistics']);
+Route::get('/daily-statistics', [StatistiquesController::class, 'dailyStatistics']);
+
 
 });
 
