@@ -17,7 +17,7 @@
      
           </div>
           <ul class="sidebar-nav">
-            <li class="active">
+            <li class="">
               <a href="{{ '/admin' }}"><i class="fa fa-home"></i>Manage</a>
             </li>
             <li>

@@ -31,7 +31,7 @@
                             <a href="#"><i class="fa fa-angle-double-right"></i> Continue reading</a>
 
                             <span class="post-like text-muted tooltip-test" data-toggle="tooltip" data-original-title="I like this post!">
-                                <span class="like-count"></span>
+                                <span class="like-count">{{ $post->likes->count() }}</span>
                                 <button class="like-btn change like" data-post-id="{{ $post->id }}" data-url="{{ route('posts.like', $post) }}"><i class="fa fa-heart"></i></button>
                                 <button class="unlike-btn change like" data-post-id="{{ $post->id }}" data-url="{{ route('posts.unlike', $post) }}" style="display: none;"><i class="fa fa-heart text-danger"></i></button>
                             </span>
@@ -40,6 +40,7 @@
                 </div>
             </div>
             @empty
+            <h1>No Posts Found</h1>
             @endforelse
         </div>
         
