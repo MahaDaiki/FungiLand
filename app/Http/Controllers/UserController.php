@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ForgotPasswordMail;
+use App\Models\Category;
+use App\Models\Post;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -12,7 +16,11 @@ use Illuminate\Support\Str;
 class UserController extends Controller
 {
  public function index(){
-    return view('profile');
+    $user = Auth::user();
+        $userId = Auth::id();
+  
+        return view('profile', compact('user'));
+   
  }
  public function forgot_show()
  {
@@ -46,11 +54,11 @@ class UserController extends Controller
          Mail::to($user->email)->send(new ForgotPasswordMail($user));
          
          return back()->withErrors([
-             'email'=> 'Check ton email'
+             'email'=> 'Check your email'
              ])->onlyInput('email');
      }else{
          return back()->withErrors([
-             'email'=> 'Email non trouvé.'
+             'email'=> 'Email not found'
              ])->onlyInput('email');
      }
  }
@@ -68,7 +76,7 @@ class UserController extends Controller
              return redirect()->route('Auth.login'); 
 
          }else{
-             return redirect()->back()->with('error', 'Mots de passe non identiques');
+             return redirect()->back()->with('error', 'password error');
          }
      }else{
          abort(404);

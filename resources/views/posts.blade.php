@@ -17,8 +17,8 @@
                 <div class="panel blog-container">
                     <div class="panel-body">
                         <div class="image-wrapper">
-                            <a class="image-wrapper image-zoom cboxElement" href="#">
-                                <img src="{{ $post->image }}" alt="Photo of Blog">
+                            <a class="d-flex justify-content-center align-items-center pt-2" href="#">
+                                <img src="/storage/{{ $post->image }}" width="400" alt="Photo of Blog">
                                 <div class="image-overlay"></div> 
                             </a>
                         </div>

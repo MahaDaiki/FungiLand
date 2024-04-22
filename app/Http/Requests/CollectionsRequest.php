@@ -23,7 +23,7 @@ class CollectionsRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'is_public' => 'required|boolean',
+            'is_public' => 'boolean',
             'description' => 'nullable|string',
         ];
     }

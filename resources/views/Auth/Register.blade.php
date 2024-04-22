@@ -19,15 +19,14 @@
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="form-group col-md-6">
                                 <label for="profile_picture" class="d-block text-center">
                                     <div class="profile-picture">
                                         <img src="assets/images/icon.jpg" alt="Profile Picture Icon">
                                     </div>
-                                    <input type="file" class="d-none" id="profile_picture" name="profilepic">
+                                    <input type="file" class="d-none" id="profile_picture" name="image">
                                 </label>
                             </div>
-
                             <div class="col-md-6">
                                 <div class="form-group mt-4">
                                     <label for="username">Username</label>

@@ -12,7 +12,7 @@ class CollectionController extends Controller
     public function index()
     {
         $collections = Collection::where('user_id', auth()->id())->get();
-        return view('', compact('collections'));
+        return view('collections.collection', compact('collections'));
     }
 
     public function store(CollectionsRequest $request){

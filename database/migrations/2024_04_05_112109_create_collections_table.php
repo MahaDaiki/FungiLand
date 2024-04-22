@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('collections', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->boolean('is_public')->default(true);
+            $table->boolean('is_public')->default(false);
             $table->string('description')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->softDeletes();

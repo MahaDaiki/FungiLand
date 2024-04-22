@@ -4,7 +4,7 @@
 
 
 @section('content')
-<section class="section about-section gray-bg" id="about">
+<section class="section about-section " id="about">
     <div class="container">
         <div class="row align-items-center flex-row-reverse">
             <div class="col-lg-6">
@@ -39,51 +39,32 @@
             </div>
             
         </div>
-        <div class="counter">
-            <div class="row ">
-                <div class="col-6 col-lg-3">
-                    <div class="count-data text-center  ">
-                        <a href="{{ '/profile' }}"><img src="assets/images/files.png" width="100" alt="posts"></a>
-                        <p class="m-0px font-w-600">My Posts</p>
-                    </div>
-                </div>
-                <div class="col-6 col-lg-3">
-                    <div class="count-data text-center">
-                        <a href=""><img src="assets/images/collections.png" width="100" alt="posts"></a>
-                        <p class="m-0px font-w-600">My collections</p>
-                    </div>
-                </div>
-                <div class="col-6 col-lg-3">
-                    <div class="count-data text-center">
-                        <a href=""><img src="assets/images/saved.png" width="100" alt="posts"></a>
-                        <p class="m-0px font-w-600">Saved Posts</p>
-                    </div>
-                </div>
-                <div class="col-6 col-lg-3">
-                    <div class="count-data text-center">
-                        <a href=""><img src="assets/images/settings.png" width="100" alt="posts"></a>
-                        <p class="m-0px font-w-600">Settings</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('layouts.profilebar')
     </div> 
 </section>
+<div class="container ">
+    <a class="float-right" href="{{ '/create' }}"><img src="assets/images/add2.png" width="70" alt="+"></a>
+</div>
 @include('layouts.errorhandle')
-<div class="container">
-@forelse ($posts as $post)
 
+    @forelse ($posts as $post)
+<div class="container">
 <div class="row">
-    <!-- Middle main post -->
     <div class="col-md-8">
+        <div class=" text-right m-3">
+                <a href="{{ route('posts.edit', $post->id) }}" class=" change rounded-pill shadow"><img src="assets/images/edit.jpg" width="60" class="rounded-pill shadow" alt="edit"></a>
+                <button class="btn-danger change rounded-pill shadow" data-toggle="modal" data-target="#deleteModal{{ $post->id }}">Delete</button>
+            </div> 
         <div class="panel blog-container">
+            
             <div class="panel-body">
-                <div class="image-wrapper">
+                <div class="d-flex justify-content-center align-items-center">
                     <a class="" href="#">
-                        <img src="{{ $post->image }}" alt="Photo of Blog">
+                        <img src="/storage/{{ $post->image }}" width='200' class="img-fluid" alt="Photo">
                         <div class="image-overlay"></div>
                     </a>
                 </div>
+                
                 <div class="container mb-4">
                     <h4 class="text-center">{{ $post->title }}</h4>
                     <small class="text ml-4">By <a href="#"><strong> {{ $post->user->name }}</strong></a> | Post on {{ $post->created_at }}| 58 comments</small>
@@ -96,11 +77,38 @@
                     <span class="post-like text-muted tooltip-test" data-toggle="tooltip" data-original-title="I like this post!">
                         <i class="fa fa-heart"></i> <span class="like-count">25</span>
                     </span>
+                    
                 </div>
             </div>
         </div>
     </div>
-
+    <div class="modal fade" id="deleteModal{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ $post->id }}" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content forma">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel{{ $post->id }}">Confirm Deletion</h5>
+                    <button type="button" class="close change" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">X</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    Are you sure you want to delete this post?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary change" data-dismiss="modal">Cancel</button>
+                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    @empty
+    <h1>No Posts</h1>
+    @endforelse
+    
     <div class="col-md-4">
        
         <div class="card mb-4 forma">
@@ -130,9 +138,6 @@
       
     </div>
 </div>
-@empty
-    
-@endforelse
 
 
 </div>

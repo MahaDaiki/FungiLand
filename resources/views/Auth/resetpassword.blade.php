@@ -4,6 +4,7 @@
 
 @section('content')
 <div class="container">
+    @include('layouts.errorhandle')
     <form class="mt-5" action="{{ route('post_reset', $token) }}" method="POST">
         @csrf
         <h1 class="h3 mb-3 font-weight-normal">Reset Password</h1>

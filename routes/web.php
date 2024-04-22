@@ -43,6 +43,12 @@ Route::get('/', function () {
 
     Route::get('/posts', [PostController::class, 'index'])->name('posts');
 
+    Route::get('/forgotpassword', [UserController::class, 'forgot_show'])->name('forgot_password_show');
+    Route::post('/forgotpassword', [UserController::class, 'forgot_password'])->name('forgot_password');
+
+    Route::get('/resetpassword/{token}', [UserController::class, 'reset'])->name('reset_password');
+    Route::post('/resetpassword/{token}', [UserController::class, 'post_reset'])->name('post_reset');
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [PostController::class, 'postbyuser'])->name('posts.index');
     Route::get('/create', [PostController::class, 'create'])->name('create');
@@ -57,26 +63,19 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/posts/{post}/save', [SavedController::class, 'save'])->name('posts.save');
     Route::delete('/posts/{post}/unsave', [SavedController::class, 'unsave'])->name('posts.unsave');
 
-    Route::get('/collections', [CollectionController::class, 'index'])->name('collections.index');
+    Route::get('/Mycollections', [CollectionController::class, 'index'])->name('collections.index');
     Route::get('/collections/{id}', [CollectionController::class, 'show'])->name('collections.show');
     Route::post('/collections', [CollectionController::class, 'store'])->name('collections.store');
     Route::put('/collections/{id}', [CollectionController::class, 'update'])->name('collections.update');
     Route::delete('/collections/{id}', [CollectionController::class, 'destroy'])->name('collections.destroy');
 
 
-    Route::get('/collection_contents/{id}', [CollectionContentController::class, 'show'])->name('collection_contents.show');
-    Route::post('/collection_contents', [CollectionContentController::class, 'store'])->name('collection_contents.store');
-    Route::put('/collection_contents/{id}', [CollectionContentController::class, 'update'])->name('collection_contents.update');
-    Route::delete('/collection_contents/{id}', [CollectionContentController::class, 'destroy'])->name('collection_contents.destroy');
+    Route::get('/collectioncontents/{id}', [CollectionContentController::class, 'show'])->name('collection_contents.show');
+    Route::post('/collectioncontents', [CollectionContentController::class, 'store'])->name('collection_contents.store');
+    Route::put('/collectioncontents/{id}', [CollectionContentController::class, 'update'])->name('collection_contents.update');
+    Route::delete('/collectioncontents/{id}', [CollectionContentController::class, 'destroy'])->name('collection_contents.destroy');
+
     
-
-    Route::get('/forgotpassword', [UserController::class, 'forgot_show'])->name('forgot_password_show');
-    Route::post('/forgotpassword', [UserController::class, 'forgot_password'])->name('forgot_password');
-
-    Route::get('/resetpassword/{token}', [UserController::class, 'reset'])->name('reset_password');
-    Route::post('/resetpassword/{token}', [UserController::class, 'post_reset'])->name('post_reset');
-
-
 });
 
 

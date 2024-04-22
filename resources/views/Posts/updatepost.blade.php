@@ -10,7 +10,7 @@
         <div class="col-md-8">
             <div class="forma p-3">
                 <h2 class="mb-4 text-center">Edit Post</h2>
-                {{-- <form action="{{ route('posts.update', ['post' => $post->id]) }}" method="POST" enctype="multipart/form-data"> --}}
+                <form action="{{ route('posts.update', $post->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT') 
                     <div class="form-group">

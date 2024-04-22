@@ -13,57 +13,60 @@
       @include('layouts.errorhandle')
     
       <div class="col-md-8 ">
-
         <div class="forma p-3">
-        <h2 class="mb-4 text-center">Create Post</h2>
-        <form action="{{ route('posts.add') }}" method="POST" enctype="multipart/form-data">
-          @csrf
-          <div class="form-group">
-            <label for="postType">Type</label>
-            <select class="form-control " style="width: 50%" id="postType" name="type">
-              <option value="article">Article</option>
-              <option value="question">Question</option>
-            </select>
-             <div class="form-group">
-            <label for="postImage">Image</label>
-            <div class="custom-file">
-              <input type="file" class="custom-file-input" id="postImage" name="image">
-              <label class="custom-file-label" for="postImage">Choose file</label>
-            </div>
-          </div>
-          </div>
+          <h2 class="mb-4 text-center">Create Post</h2>
+          <form action="{{ route('posts.add') }}" method="POST" enctype="multipart/form-data">
+              @csrf
+              <div class="form-group">
+                  <label for="postType">Type</label>
+                  <select class="form-control" style="width: 50%" id="postType" name="type">
+                      <option value="article">Article</option>
+                      <option value="question">Question</option>
+                  </select>
+              </div>
+              <div class="form-row align-items-center">
+                  <div class="form-group col-md-6">
+                      <label for="postTitle">Title</label>
+                      <input type="text" class="form-control" id="postTitle" name="title" placeholder="Enter title">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="addpic" class="d-block text-center">
+                        <div class="addpic">
+                            <img src="assets/images/picicon.png" width="150" class="picicon " alt="Profile Picture Icon">
+                        </div>
+                        <input type="file" class="d-none" id="addpic" name="image">
+                    </label>
+                </div>
+              </div>
+              
           <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="postCategory">Category</label>
-              <select class="form-control" id="postCategory" name="category_id">
-                @foreach($categories as $category)
-                  <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endforeach
-              </select>
-            </div>
-            <div class="form-group col-md-6">
-              <label for="postTags">Tags</label>
-              <div id="selectedTagsContainer"></div>
-              <select class="form-control" id="postTags" name="tag_ids[]" multiple>
-                @foreach($tags as $tag)
-                  <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-                @endforeach
-              </select>
-            </div>
+              <div class="form-group col-md-6">
+                  <label for="postCategory">Category</label>
+                  <select class="form-control" id="postCategory" name="category_id">
+                      @foreach($categories as $category)
+                      <option value="{{ $category->id }}">{{ $category->name }}</option>
+                      @endforeach
+                  </select>
+              </div>
+              <div class="form-group col-md-6">
+                  <label for="postTags">Tags</label>
+                  <div id="selectedTagsContainer"></div>
+                  <select class="form-control" id="postTags" name="tag_ids[]" multiple>
+                      @foreach($tags as $tag)
+                      <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                      @endforeach
+                  </select>
+              </div>
           </div>
           <div class="form-group">
-            <label for="postTitle">Title</label>
-            <input type="text" class="form-control" id="postTitle" name="title" placeholder="Enter title">
+              <label for="postContent">Content</label>
+              <textarea class="form-control" id="postContent" name="content" rows="6" placeholder="Enter content"></textarea>
           </div>
-          <div class="form-group">
-            <label for="postContent">Content</label>
-            <textarea class="form-control" id="postContent" name="content" rows="6" placeholder="Enter content"></textarea>
-          </div>
-         
           <div class="form-group text-center">
-            <button type="submit" class="btn btn-primary"><img src="assets/images/flower.png" width="50" class="spin" alt="">Submit<img src="assets/images/flower.png" width="40" class="spin"  alt=""></button>
+              <button type="submit" class="btn btn-primary"><img src="assets/images/flower.png" width="50" class="spin" alt="">Submit<img src="assets/images/flower.png" width="40" class="spin" alt=""></button>
           </div>
-        </form>
+      </form>
+      
       </div>
       </div>
       <div class="col-md-4">
