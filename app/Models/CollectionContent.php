@@ -9,10 +9,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class CollectionContent extends Model
 {
     use HasFactory, SoftDeletes;
+    protected $table = 'collection_content';
     protected $fillable = [
         'collection_id', 'title', 'description', 'image'
     ];
-
     public function collection()
     {
         return $this->belongsTo(Collection::class);

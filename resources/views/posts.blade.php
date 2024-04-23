@@ -8,9 +8,18 @@
         <h2 class="text h1">Welcome to our blog</h2>
         <hr>
     </div>
-
+    <div>
+        <form id="searchForm" class="mb-4 ml-2 p-2">
+            @csrf
+            <input type="text" name="search" placeholder="Search by title, category, or tag">
+            <button type="submit" class="change mr-2 btn-primary">Search</button>
+        </form>
+    </div>
+    
     <div class="row">
         <div class="col-md-8">
+            <div class="searched"></div>
+            <div class="allposts">
             @forelse ($posts as $post)
             @include('layouts.errorhandle')
             <div class="col-md-12 mb-4">
@@ -28,7 +37,10 @@
                             <p class="m-top-sm m-bottom-sm">
                                 {{ $post->content }}
                             </p>
-                            <a href="#"><i class="fa fa-angle-double-right"></i> Continue reading</a>
+                           @foreach ($post->tags as $tag)
+                                <a href="" class="ml-2 ">#{{ $tag->name }}</a>
+                            @endforeach
+                            <a href="#" class="float-right"><i class="fa fa-angle-double-right"></i> Continue reading</a>
 
                             <span class="post-like text-muted tooltip-test" data-toggle="tooltip" data-original-title="I like this post!">
                                 <span class="like-count">{{ $post->likes->count() }}</span>
@@ -43,6 +55,7 @@
             <h1>No Posts Found</h1>
             @endforelse
         </div>
+    </div>
         
         <div class="col-md-4">
             <h4 class="headline text h2">

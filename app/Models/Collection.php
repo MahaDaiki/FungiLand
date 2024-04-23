@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Collection extends Model
 {
     use HasFactory, SoftDeletes;
+    protected $table = 'collections'; 
     protected $fillable = [
         'name', 'is_public', 'description', 'user_id'
     ];
@@ -19,6 +20,10 @@ class Collection extends Model
     }
 
     public function posts()
+    {
+        return $this->hasMany(CollectionContent::class);
+    }
+    public function collectionContent()
     {
         return $this->hasMany(CollectionContent::class);
     }

@@ -1,6 +1,6 @@
 @include('layouts.nav')
 @extends('layouts.app')
-@section('title', 'profile')
+@section('title', 'Collections')
 
 @section('content')
 @include('layouts.profilebar')
@@ -11,21 +11,27 @@
 </div>
 @include('layouts.errorhandle')
 
-@forelse ($collections as $collection)
-    <div class="container">
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5 class="card-title">{{ $collection->name }}</h5>
-                <p class="card-text">{{ $collection->description }}</p>
-                <p>Visibility: {{ $collection->is_public ? 'Public' : 'Private' }}</p>
-                <button class="btn btn-primary" data-toggle="modal" data-target="#editCollectionModal{{ $collection->id }}">
-                    <img src="assets/images/edit.jpg" width="60" class="rounded-pill shadow" alt="edit">
-                </button>
-                <button class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal{{ $collection->id }}">
-                    Delete
-                </button>
-            </div>
-        </div>
+<div class="container">
+    <div class="row">
+        @forelse ($collections as $collection)
+            <div class="col-md-4 mb-3">
+                <div class="card shadow collection text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $collection->name }}</h5>
+                        <p class="card-text">{{ $collection->description }}</p>
+                        <p>Visibility: {{ $collection->is_public ? 'Public' : 'Private' }}</p>
+                        <div class="d-flex justify-content-between">
+                            <button class="change shadow btn-primary" data-toggle="modal" data-target="#editCollectionModal{{ $collection->id }}">
+                                <img src="assets/images/edit.jpg" width="30" class="rounded shadow" alt="edit">
+                            </button>
+                            <a href="{{ route('collections.show', $collection->id) }}">View Collection</a>
+                            <button class="change btn-danger shadow" data-toggle="modal" data-target="#confirmDeleteModal{{ $collection->id }}">
+                                Delete
+                            </button>
+                            
+                        </div>
+                    </div>
+           
 
         <!-- Edit Modal -->
     <div class="modal fade" id="editCollectionModal{{ $collection->id }}" tabindex="-1"         role="dialog" aria-labelledby="editCollectionModalLabel{{ $collection->id }}" aria-hidden="true">

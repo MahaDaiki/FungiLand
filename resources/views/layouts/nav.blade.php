@@ -14,10 +14,10 @@
 <body>    
   <nav class="navbar navbar-expand-lg">
     <a class="navbar-brand" href="{{ '/' }}">
-        <img src="assets/images/logo.png" width="100" height="100" class="d-inline-block align-top" alt="Logo">
+        <img src="../assets/images/logo.png" width="100" height="100" class="d-inline-block align-top" alt="Logo">
     </a>
     <button class="navbar-toggler" type="button change spin" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span ><img src="assets/images/button.png" class="change spin" style="z-index: 9;"  width="100" height="100" alt=""></span>
+        <span ><img src="{{ asset('../assets/images/button.png') }}" class="change spin" style="z-index: 9;"  width="100" height="100" alt=""></span>
     </button>
     
     <div class="collapse navbar-collapse site-navigation" id="navbarSupportedContent">
@@ -37,7 +37,7 @@
                 </form>
             </li> 
             <a href="{{ '/profile'}}">
-                <button class="btn gradient ml-5 float-right my-2 my-sm-0" type="button">   <img width="40" class="mr-3 spin" src="assets/images/button.png" alt="">Profile</button>
+                <button class="btn gradient ml-5 float-right my-2 my-sm-0" type="button">   <img width="40" class="mr-3 spin" src="{{ asset('../assets/images/button.png')}}" alt="">Profile</button>
             </a>
             @else
             <li class="nav-item">

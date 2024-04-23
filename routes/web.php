@@ -9,6 +9,7 @@ use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\LikesController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SavedController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\StatistiquesController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
@@ -27,9 +28,12 @@ use Illuminate\Support\Facades\Route;
 
 
 
+
 Route::get('/', function () {
     return view('welcome');
 });
+    // search/filter
+    Route::post('/search', [SearchController::class, 'search']);
 
     Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
     Route::post('/register', [RegisterController::class, 'register']);

@@ -25,7 +25,7 @@ class CollectionsContentRequest extends FormRequest
             'collection_id' => 'required|exists:collections,id',
             'title' => 'required|string',
             'description' => 'nullable|string',
-            'media' => 'file|mimes:jpeg,png,jpg,gif,mp4,mov,avi,wmv|max:20480',
+            'image' => 'file|mimes:jpeg,png,jpg,gif,mp4,mov,avi,wmv|max:20480',
         ];
     }
 }

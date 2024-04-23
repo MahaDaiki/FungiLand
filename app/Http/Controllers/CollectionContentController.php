@@ -16,11 +16,11 @@ class CollectionContentController extends Controller
         $collectionContent->title = $request->title;
         $collectionContent->description = $request->description;
 
-        if ($request->hasFile('media')) {
-            $media = $request->file('media');
-            $mediaName = time() . '.' . $media->getClientOriginalExtension();
-            $media->storeAs('assets/images', $mediaName); 
-            $collectionContent->media = $mediaName;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/assets/images', $imageName); 
+            $collectionContent->image = $imageName;
         }
 
         $collectionContent->save();
@@ -32,21 +32,23 @@ class CollectionContentController extends Controller
     {
         $collectionContent = CollectionContent::findOrFail($id);
 
-        $oldMedia = $collectionContent->media;
+        $oldMedia = $collectionContent->image;
 
+        $collectionContent->collection_id = $request->collection_id; // Include collection ID in update
         $collectionContent->title = $request->title;
         $collectionContent->description = $request->description;
-      if ($request->hasFile('media')) {
-            $media = $request->file('media');
-            $mediaName = time() . '.' . $media->getClientOriginalExtension();
-            $media->storeAs('assets/images', $mediaName); 
-            $collectionContent->media = $mediaName;
+        
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/assets/images', $imageName); 
+            $collectionContent->image = $imageName;
         }
 
         $collectionContent->save();
 
-        if (isset($oldMedia) && $oldMedia !== $collectionContent->media) {
-            Storage::delete('public/media/' . $oldMedia);
+        if (isset($oldMedia) && $oldMedia !== $collectionContent->image) {
+            Storage::delete('public/assets/images/' . $oldMedia);
         }
 
         return back()->with('success', 'Collection content updated successfully');
@@ -60,4 +62,3 @@ class CollectionContentController extends Controller
         return back()->with('success', 'Collection content deleted successfully');
     }
 }
-
