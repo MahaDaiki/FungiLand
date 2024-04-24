@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Saved extends Model
 {
     use HasFactory, SoftDeletes;
+    protected $table = 'saved'; 
     protected $fillable = [
         'user_id', 'post_id'
     ];

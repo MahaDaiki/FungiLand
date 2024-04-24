@@ -31,7 +31,7 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
                                 </div>
                                 <div class="container mb-4">
                                     <h4 class="text-center">${post.title}</h4>
-                                    <small class="text ml-4">By <a href="#"><strong>${post.user.name}</strong></a> | Post on ${post.created_at} | ${post.category.name}</small>
+                                    <small class="text ml-4">By <a href="#"><strong>${post.user.name}</strong></a> | Post on ${post.created_at} | ${post.type} |${post.category.name}</small>
                                     <p class="m-top-sm m-bottom-sm">
                                         ${post.content}
                                     </p>`;

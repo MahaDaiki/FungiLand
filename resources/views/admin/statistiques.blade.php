@@ -8,13 +8,49 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <!-- Sidebar -->
             <div class="col-md-3">
                 @include('layouts.sidebar')
             </div>
-            
-            <div class="col-md-9 mt-5 ">
+    
+            <div class="col-md-9 mt-5">
                 <div class="container">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card stat shadow">
+                                <h2 class="card-header text-center">Total Users</h2>
+                                <div class="card-body">
+                                    <h1 class="text-center fs-1">{{ $totalUsers }}</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card stat shadow">
+                                <h2 class="card-header text-center">Total Posts</h2>
+                                <div class="card-body">
+                                    <h1 class="text-center fs-1">{{ $totalposts }}</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card stat shadow">
+                                <h2 class="card-header text-center">Total Categories</h2>
+                                <div class="card-body">
+                                    <h1 class="text-center fs-1">{{ $totalCategories }}</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card stat shadow">
+                                <h2 class="card-header text-center">Total Tags</h2>
+                                <div class="card-body">
+                                    <h1 class="text-center fs-1">{{ $totalTags }}</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card">
@@ -33,6 +69,7 @@
                             </div>
                         </div>
                     </div>
+                   
                 </div>
             </div>
         </div>

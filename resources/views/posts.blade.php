@@ -5,15 +5,30 @@
 @section('content')
 <div class="container bootstrap snippets bootdey">
     <div class="row">
-        <h2 class="text h1">Welcome to our blog</h2>
+        <h2 class="text h1">Welcome to FungiLand</h2>
         <hr>
     </div>
-    <div>
-        <form id="searchForm" class="mb-4 ml-2 p-2">
-            @csrf
-            <input type="text" name="search" placeholder="Search by title, category, or tag">
-            <button type="submit" class="change mr-2 btn-primary">Search</button>
-        </form>
+    <div class="container">
+        <div class="row">
+            <form id="searchForm" class="mb-4 ml-2 shadow ">
+                @csrf
+                <div class="form-row align-items-end m-5">
+                    <div class="col">
+                        <input type="text" class="form-control shadow" name="search" placeholder="Search by title, category, or tag">
+                    </div>
+                    <div class="col">
+                        <select class="form-control shadow" name="post_type">
+                            <option value="">All Types</option>
+                            <option value="article">Article</option>
+                            <option value="question">Question</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="change text-dark btn-primary">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
     
     <div class="row">
@@ -33,7 +48,8 @@
                         </div>
                         <div class="container mb-4">
                             <h4 class="text-center">{{ $post->title }}</h4>
-                            <small class="text ml-4">By <a href="#"><strong>{{ $post->user->name }}</strong></a> | Post on {{ $post->created_at }} | {{ $post->category->name }}</small>
+                            <small class="text ml-4">By <a href="#"><strong>{{ $post->user->name }}</strong></a> | Post on {{ $post->created_at }} |{{ $post->type }}|
+                                 {{ $post->category->name }}</small>
                             <p class="m-top-sm m-bottom-sm">
                                 {{ $post->content }}
                             </p>
@@ -59,18 +75,35 @@
         
         <div class="col-md-4">
             <h4 class="headline text h2">
-                POPULAR POST
+           Popular Tags
                 <span class="line"></span>
             </h4>
             <div class="media popular-post mb-2">
-                <a class="pull-left" href="#">
-                    <img src="" alt="Popular Post">
-                </a>
                 <div class="media-body mt-3 ml-1">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                    <ul class="custom-list">
+                        @foreach ($mosttags as $tags)
+                            <li class="fs-5"> <img src="/assets/images/pops.png" width="40" alt="->"> #{{ $tags->name }}</li>
+                        @endforeach
+                    </ul>
+                        <h4 class="headline text h2">
+                       Popular categories
+                            <span class="line"></span>
+                        </h4>
+                        <div class="media popular-post mb-2">
+                            <div class="media-body mt-3 ml-1">
+                                <ul class="custom-list">
+                                 @foreach ($mostcategories as $cats)
+                                    <li class="fs-5"> <img src="/assets/images/pops.png" width="40" alt="->"> {{ $cats->name }}</li>
+                                 @endforeach
+                                 </ul>
+                            </div>
+                        </div>  
+                    </div> 
+                    
                 </div>
             </div>  
         </div>    
+
     </div>
 </div>
 @endsection

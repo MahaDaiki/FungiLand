@@ -12,7 +12,11 @@ class StatistiquesController extends Controller
 {
 
     public function index(){
-        return view('admin.statistiques');
+        $totalCategories = Category::count();
+        $totalTags = Tag::count();
+        $totalUsers = User::count();
+        $totalposts = Post::count();
+        return view('admin.statistiques', compact('totalCategories','totalTags','totalUsers','totalposts'));
     }
 
     // public function monthlyStatistics()
@@ -48,14 +52,7 @@ class StatistiquesController extends Controller
             $totalposts = Post::count();
         return response()->json(compact('dailyPosts', 'dailyUsers','totalCategories','totalTags','totalUsers','totalposts'));
     }
-    public function adminstats(){
 
-        $totalCategories = Category::count();
-        $totalTags = Tag::count();
-        $totalUsers = User::count();
-        $totalposts = Post::count();
-
-    }
 
     public function totalPostsByUser()
     {

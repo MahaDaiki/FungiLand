@@ -54,6 +54,7 @@ body{
 }
 a {
     color: #B73E3E; 
+ 
 }
 
 a:visited {
@@ -587,6 +588,9 @@ mark {
   border-image: url('../images/Profilepic.png') 10 repeat;
 }
 
+.custom-list {
+list-style: none;
+}
 
 /* register */
 .profile-picture {
@@ -716,4 +720,13 @@ input[type="file"].d-none {
   border-radius: 23px;
   background: linear-gradient(315deg, #f2d9b4, #c5b28d);
   box-shadow:  -18px -18px 26px #63543c;
+}
+
+.stat{
+  background-image: url('../images/stats.jpg');
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
+  font-size: larger;
+
 }

@@ -63,7 +63,7 @@
               <textarea class="form-control" id="postContent" name="content" rows="6" placeholder="Enter content"></textarea>
           </div>
           <div class="form-group text-center">
-              <button type="submit" class="btn btn-primary"><img src="assets/images/flower.png" width="50" class="spin" alt="">Submit<img src="assets/images/flower.png" width="40" class="spin" alt=""></button>
+              <button type="submit" class="text-dark btn-primary"><img src="assets/images/flower.png" width="50" class="spin" alt="">Submit<img src="assets/images/flower.png" width="40" class="spin" alt=""></button>
           </div>
       </form>
       

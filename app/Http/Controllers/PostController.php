@@ -33,7 +33,14 @@ class PostController extends Controller
         $posts = Post::where('user_id', $userId)->get();
         $categories = Category::all();
         $tags = Tag::all();
-        return view('profile', compact('posts','categories','tags','user'));
+        $userPosts = Post::withCount('likes', 'comments', 'saves')
+        ->where('user_id', $user->id)
+        ->get();
+        $totalLikes = $userPosts->sum('likes_count');
+        $totalComments = $userPosts->sum('comments_count');
+        $totalSaved = $userPosts->sum('saves_count');
+        $totalPosts = $userPosts->count();
+        return view('profile', compact('posts','categories','tags','user', 'totalLikes', 'totalComments', 'totalSaved', 'totalPosts'));
     }
 
     public function create(){

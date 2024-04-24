@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Mail\ForgotPasswordMail;
 use App\Models\Category;
+use App\Models\Comment;
+use App\Models\Like;
 use App\Models\Post;
+use App\Models\Saved;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -15,13 +18,21 @@ use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
- public function index(){
-    $user = Auth::user();
-        $userId = Auth::id();
-  
-        return view('profile', compact('user'));
-   
- }
+    public function index()
+    {
+            $user = Auth::user();
+            $userPosts = Post::withCount('likes', 'comments', 'saves')
+                             ->where('user_id', $user->id)
+                             ->get();
+            $totalLikes = $userPosts->sum('likes_count');
+            $totalComments = $userPosts->sum('comments_count');
+            $totalSaved = $userPosts->sum('saves_count');
+            $totalPosts = $userPosts->count();
+            
+            return view('profile', compact('user', 'totalLikes', 'totalComments', 'totalSaved', 'totalPosts'));
+        }
+        
+    
  public function forgot_show()
  {
      return view('Auth.forgotpassword');

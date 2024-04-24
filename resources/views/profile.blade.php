@@ -47,98 +47,104 @@
 </div>
 @include('layouts.errorhandle')
 
-    @forelse ($posts as $post)
+   
 <div class="container">
-<div class="row">
-    <div class="col-md-8">
-        <div class=" text-right m-3">
-                <a href="{{ route('posts.edit', $post->id) }}" class=" change rounded-pill shadow"><img src="assets/images/edit.jpg" width="60" class="rounded-pill shadow" alt="edit"></a>
+    <div class="row">
+        <div class="col-md-8">
+            @forelse ($posts as $post)
+            <div class="text-right m-3">
+                <a href="{{ route('posts.edit', $post->id) }}" class="change rounded-pill shadow"><img src="assets/images/edit.jpg" width="60" class="rounded-pill shadow" alt="edit"></a>
                 <button class="btn-danger change rounded-pill shadow" data-toggle="modal" data-target="#deleteModal{{ $post->id }}">Delete</button>
             </div> 
-        <div class="panel blog-container">
-            
-            <div class="panel-body">
-                <div class="d-flex justify-content-center align-items-center">
-                    <a class="" href="#">
-                        <img src="/storage/{{ $post->image }}" width='200' class="img-fluid" alt="Photo">
-                        <div class="image-overlay"></div>
-                    </a>
+            <div class="panel blog-container">
+                <div class="panel-body">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <a class="" href="#">
+                            <img src="/storage/{{ $post->image }}" width='200' class="img-fluid" alt="Photo">
+                            <div class="image-overlay"></div>
+                        </a>
+                    </div>
+                    <div class="container mb-4">
+                        <h4 class="text-center">{{ $post->title }}</h4>
+                        <small class="text ml-4">By <a href="#"><strong> {{ $post->user->name }}</strong></a> | Post on {{ $post->created_at }}| 58 comments</small>
+                        <p class="m-top-sm m-bottom-sm">
+                            {{ $post->content }}
+                        </p>
+                        <a href="#"><i class="fa fa-angle-double-right"></i> Continue reading</a>
+                        <span class="post-like text-muted tooltip-test" data-toggle="tooltip" data-original-title="I like this post!">
+                            <i class="fa fa-heart"></i> <span class="like-count">25</span>
+                        </span>
+                    </div>
                 </div>
-                
-                <div class="container mb-4">
-                    <h4 class="text-center">{{ $post->title }}</h4>
-                    <small class="text ml-4">By <a href="#"><strong> {{ $post->user->name }}</strong></a> | Post on {{ $post->created_at }}| 58 comments</small>
-
-                    <p class="m-top-sm m-bottom-sm">
-                      {{ $post->content }}
-                    </p>
-                    <a href="#"><i class="fa fa-angle-double-right"></i> Continue reading</a>
-
-                    <span class="post-like text-muted tooltip-test" data-toggle="tooltip" data-original-title="I like this post!">
-                        <i class="fa fa-heart"></i> <span class="like-count">25</span>
-                    </span>
-                    
+            </div>
+            <div class="modal fade" id="deleteModal{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ $post->id }}" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content forma">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalLabel{{ $post->id }}">Confirm Deletion</h5>
+                            <button type="button" class="close change" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">X</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-center">
+                            Are you sure you want to delete this post?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary change" data-dismiss="modal">Cancel</button>
+                            <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @empty
+            <h1>No Posts</h1>
+            @endforelse
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mb-4 forma">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Posts</h5>
+                            <p class="card-text">{{ $totalPosts }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card mb-4 forma">
+                        <div class="card-body">
+                            <h5 class="card-title">Total likes on my posts</h5>
+                            <p class="card-text">{{ $totalLikes }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card mb-4 forma">
+                        <div class="card-body">
+                            <h5 class="card-title">Total saved</h5>
+                            <p class="card-text">{{ $totalSaved }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card mb-4 forma">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Comments on my posts </h5>
+                            <p class="card-text">{{ $totalComments }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="deleteModal{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ $post->id }}" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content forma">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel{{ $post->id }}">Confirm Deletion</h5>
-                    <button type="button" class="close change" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">X</span>
-                    </button>
-                </div>
-                <div class="modal-body text-center">
-                    Are you sure you want to delete this post?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary change" data-dismiss="modal">Cancel</button>
-                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn">Delete</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    @empty
-    <h1>No Posts</h1>
-    @endforelse
+</div>
+
+
     
-    <div class="col-md-4">
-       
-        <div class="card mb-4 forma">
-            <div class="card-body">
-                <h5 class="card-title">Total Posts</h5>
-                <p class="card-text">123</p>
-            </div>
-        </div>
-        <div class="card mb-4 forma">
-            <div class="card-body">
-                <h5 class="card-title">Total likes on posts</h5>
-                <p class="card-text">7272</p>
-            </div>
-        </div>
-        <div class="card mb-4 forma">
-            <div class="card-body">
-                <h5 class="card-title">Post saved</h5>
-                <p class="card-text">33</p>
-            </div>
-        </div>
-        <div class="card mb-4 forma">
-            <div class="card-body">
-                <h5 class="card-title">Total Comments on posts </h5>
-                <p class="card-text">??</p>
-            </div>
-        </div>
-      
-    </div>
-</div>
+   
 
-
-</div>
 @endsection

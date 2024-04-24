@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Collection extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'collections'; 
+    
     protected $fillable = [
         'name', 'is_public', 'description', 'user_id'
     ];
