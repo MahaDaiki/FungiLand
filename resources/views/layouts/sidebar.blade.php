@@ -24,7 +24,7 @@
               <a href="{{ '/stats' }}"><i class="fa fa-plug"></i>statistics</a>
             </li>
             <li>
-              <a href="#"><i class="fa fa-user"></i>Users</a>
+              <a href="{{ '/manage' }}"><i class="fa fa-user"></i>Users</a>
             </li>
           </ul>
         </aside>

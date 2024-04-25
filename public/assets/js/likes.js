@@ -1,22 +1,22 @@
 
-document.addEventListener("DOMContentLoaded", function() {
-    const likeBtns = document.querySelectorAll('.like-btn');
-    const unlikeBtns = document.querySelectorAll('.unlike-btn');
+// document.addEventListener("DOMContentLoaded", function() {
+//     const likeBtns = document.querySelectorAll('.like-btn');
+//     const unlikeBtns = document.querySelectorAll('.unlike-btn');
 
-    likeBtns.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            btn.style.display = 'none';
-            btn.nextElementSibling.style.display = 'inline-block';
-        });
-    });
+//     likeBtns.forEach(function(btn) {
+//         btn.addEventListener('click', function() {
+//             btn.style.display = 'none';
+//             btn.nextElementSibling.style.display = 'inline-block';
+//         });
+//     });
 
-    unlikeBtns.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            btn.style.display = 'none';
-            btn.previousElementSibling.style.display = 'inline-block';
-        });
-    });
-});
+//     unlikeBtns.forEach(function(btn) {
+//         btn.addEventListener('click', function() {
+//             btn.style.display = 'none';
+//             btn.previousElementSibling.style.display = 'inline-block';
+//         });
+//     });
+// });
 
 document.addEventListener('DOMContentLoaded', function() {
     var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             var postId = this.getAttribute('data-post-id');
             var url = this.getAttribute('data-url');
+            var likeCountSpan = this.parentElement.querySelector('.like-count');
 
             fetch(url, {
                 method: 'POST',
@@ -40,7 +41,9 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(response => response.json())
             .then(data => {
-                console.log('Liked');
+                likeCountSpan.textContent = data.likes_count;
+                btn.style.display = 'none';
+                btn.nextElementSibling.style.display = 'inline';
             })
             .catch(error => console.error(error));
         });
@@ -51,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             var postId = this.getAttribute('data-post-id');
             var url = this.getAttribute('data-url');
+            var likeCountSpan = this.parentElement.querySelector('.like-count');
 
             fetch(url, {
                 method: 'DELETE',
@@ -62,7 +66,9 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(response => response.json())
             .then(data => {
-                console.log('Unliked');
+                likeCountSpan.textContent = data.likes_count;
+                btn.style.display = 'none';
+                btn.previousElementSibling.style.display = 'inline';
             })
             .catch(error => console.error(error));
         });

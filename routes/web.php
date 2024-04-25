@@ -67,6 +67,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/posts/{post}/save', [SavedController::class, 'save'])->name('posts.save');
     Route::delete('/posts/{post}/unsave', [SavedController::class, 'unsave'])->name('posts.unsave');
 
+    Route::get('/MySavedPosts',[SavedController::class, 'index'])->name('saved-posts.index');
+
     Route::get('/Mycollections', [CollectionController::class, 'index'])->name('collections.index');
     Route::get('/collections/{id}', [CollectionController::class, 'show'])->name('collections.show');
     Route::post('/collections', [CollectionController::class, 'store'])->name('collections.store');
@@ -101,6 +103,14 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     // Route::get('/monthly-statistics', [StatistiquesController::class, 'monthlyStatistics']);
     Route::get('/daily-statistics', [StatistiquesController::class, 'dailyStatistics']);
 
+    Route::get('/manage',[AdminController::class, 'manage'])->name('manange');
+
+    Route::delete('/users/{id}', [AdminController::class,'deleteUser' ])->name('users.destroy');
+    Route::post('/users/{id}/restore',[AdminController::class,'restoreUser' ])->name('users.restore');
+    
+    Route::delete('/posts/{id}', [AdminController::class,'deletePost' ])->name('posts.destroy');
+    Route::post('/posts/{id}/restore', [AdminController::class,'restorePost' ])->name('posts.restore');
+    
 
 });
 

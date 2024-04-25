@@ -42,12 +42,32 @@
                     <div class="panel-body">
                         <div class="image-wrapper">
                             <a class="d-flex justify-content-center align-items-center pt-2" href="#">
+                             
                                 <img src="/storage/{{ $post->image }}" width="400" alt="Photo of Blog">
                                 <div class="image-overlay"></div> 
-                            </a>
+                            </a>  
+                        
                         </div>
+                        @if(auth()->check())
+                        @php
+                            $saved = $post->saves->contains('user_id', auth()->user()->id);
+                        @endphp
+                        <span class="post-save text-muted tooltip-test float-right" data-toggle="tooltip" data-original-title="{{ $saved ? 'You saved this post!' : 'Save this post!' }}">
+                            <button class="unsave-btn change save" data-post-id="{{ $post->id }}" data-save-url="{{ route('posts.save', $post) }}" data-unsave-url="{{ route('posts.unsave', $post) }}" style="{{ $saved ? '' : 'display: none;' }}"><i class="fa fa-bookmark text-warning"></i></button>
+                            <button class="save-btn change save" data-post-id="{{ $post->id }}" data-save-url="{{ route('posts.save', $post) }}" data-unsave-url="{{ route('posts.unsave', $post) }}" style="{{ $saved ? 'display: none;' : '' }}"><i class="fa fa-bookmark"></i></button>
+                        </span>
+                    @else
+                        <span class="post-save text-muted tooltip-test float-right" data-toggle="tooltip" data-original-title="Save this post!">
+                            <button class="save-btn change save" data-post-id="{{ $post->id }}" data-save-url="{{ route('posts.save', $post) }}" data-unsave-url="{{ route('posts.unsave', $post) }}"><i class="fa fa-bookmark"></i></button>
+                            <button class="unsave-btn change save" data-post-id="{{ $post->id }}" style="display: none;"><i class="fa fa-bookmark text-primary"></i></button>
+                        </span>
+                    @endif
+                    
+                    
+                    
                         <div class="container mb-4">
                             <h4 class="text-center">{{ $post->title }}</h4>
+
                             <small class="text ml-4">By <a href="#"><strong>{{ $post->user->name }}</strong></a> | Post on {{ $post->created_at }} |{{ $post->type }}|
                                  {{ $post->category->name }}</small>
                             <p class="m-top-sm m-bottom-sm">
@@ -58,11 +78,29 @@
                             @endforeach
                             <a href="#" class="float-right"><i class="fa fa-angle-double-right"></i> Continue reading</a>
 
-                            <span class="post-like text-muted tooltip-test" data-toggle="tooltip" data-original-title="I like this post!">
+                            @if(auth()->check())
+                            @if($post->likes->contains('user_id', auth()->user()->id))
+                                <span class="post-like text-muted tooltip-test" data-toggle="tooltip" data-original-title="You liked this post!">
+                                    <span class="like-count">{{ $post->likes->count() }}</span>
+                                    <button class="unlike-btn change like" data-post-id="{{ $post->id }}" data-url="{{ route('posts.unlike', $post) }}"><i class="fa fa-heart text-danger"></i></button>
+                                    <button class="like-btn change like" data-post-id="{{$post->id }}" data-url="{{ route('posts.like', $post) }}" style="display: none;"><i class="fa fa-heart"></i></button>
+                                </span>
+                            @else
+                                <span class="post-like text-muted tooltip-test" data-toggle="tooltip" data-original-title="Like this post!">
+                                    <span class="like-count">{{ $post->likes->count() }}</span>
+                                    <button class="like-btn change like" data-post-id="{{ $post->id }}" data-url="{{ route('posts.like', $post) }}"><i class="fa fa-heart"></i></button>
+                                    <button class="unlike-btn change like" data-post-id="{{ $post->id }}" data-url="{{ route('posts.unlike', $post) }}" style="display: none;"><i class="fa fa-heart text-danger"></i></button>
+                                </span>
+                            @endif
+                        @else
+                            <span class="post-like text-muted tooltip-test" data-toggle="tooltip" data-original-title="Like this post!">
                                 <span class="like-count">{{ $post->likes->count() }}</span>
                                 <button class="like-btn change like" data-post-id="{{ $post->id }}" data-url="{{ route('posts.like', $post) }}"><i class="fa fa-heart"></i></button>
                                 <button class="unlike-btn change like" data-post-id="{{ $post->id }}" data-url="{{ route('posts.unlike', $post) }}" style="display: none;"><i class="fa fa-heart text-danger"></i></button>
                             </span>
+                        @endif
+                        
+                        
                         </div>
                     </div>  
                 </div>

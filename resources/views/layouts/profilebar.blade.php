@@ -14,7 +14,7 @@
         </div>
         <div class="col-6 col-lg-3">
             <div class="count-data text-center">
-                <a href=""><img src="assets/images/saved.png" width="100" alt="posts"></a>
+                <a href="{{ '/MySavedPosts' }}"><img src="assets/images/saved.png" width="100" alt="posts"></a>
                 <p class="m-0px font-w-600">Saved Posts</p>
             </div>
         </div>
