@@ -1,23 +1,4 @@
 
-// document.addEventListener("DOMContentLoaded", function() {
-//     const likeBtns = document.querySelectorAll('.like-btn');
-//     const unlikeBtns = document.querySelectorAll('.unlike-btn');
-
-//     likeBtns.forEach(function(btn) {
-//         btn.addEventListener('click', function() {
-//             btn.style.display = 'none';
-//             btn.nextElementSibling.style.display = 'inline-block';
-//         });
-//     });
-
-//     unlikeBtns.forEach(function(btn) {
-//         btn.addEventListener('click', function() {
-//             btn.style.display = 'none';
-//             btn.previousElementSibling.style.display = 'inline-block';
-//         });
-//     });
-// });
-
 document.addEventListener('DOMContentLoaded', function() {
     var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     
