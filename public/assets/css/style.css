@@ -749,3 +749,8 @@ input[type="file"].d-none {
   font-size: larger;
 
 }
+
+.commentcard{
+  background-color: #f2e8da;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
+}

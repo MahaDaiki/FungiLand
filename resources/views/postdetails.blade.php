@@ -49,14 +49,22 @@
             <div class="mt-4 shadow p-2">
                 <h3>Comments</h3>
                 @include('layouts.errorhandle')
+               
                 @foreach($post->comments as $comment)
-                <div class="card mb-2">
-                    <div class="card-body">
-                        <p class="card-text">{{ $comment->content }}</p>
+                 <div class="card commentcard">
+                    <div class="card-body shadow ">
+                        <div class="d-flex align-items-center">
+                            <div class="rounded-circle overflow-hidden mr-2 shadow" style="width: 24px; height: 24px;">
+                                <img src="{{ $comment->user->profilepic }}" alt="User Profile Picture" class="w-100 h-100">
+                            </div>
+                            <h3> {{ $comment->user->name }}: </h3>
+                            <p class="card-text fs-5"> &nbsp; {{ $comment->content }}</p>
+                        </div>
+                        @if(auth()->check() && auth()->user()->id === $comment->user_id)
                         <form action="{{ route('comments.update', ['post' => $post, 'comment' => $comment]) }}" method="POST" style="display: none;" class="edit-comment-form">
                             @csrf
                             @method('PUT')
-                            <textarea class="form-control" name="content" rows="3">{{ $comment->content }}</textarea>
+                            <textarea class="form-control" name="content" rows="3"> {{ $comment->content }}</textarea>
                             
                             <button type="submit" class="text-dark  change btn-sm btn-primary">Save</button>
                         </form>
@@ -66,8 +74,10 @@
                             @method('DELETE')
                             <button type="submit" class="change btn-danger float-right">Delete</button>
                         </form>
+                        @endif
                     </div>
                 </div>
+                <hr>
             @endforeach
             
             </div>
@@ -76,11 +86,11 @@
                 @csrf
                 <div class="mb-3 row">
                     <label for="commentContent" class="form-label">Add your comment:</label>
-                <div class="col-md-6">
+                <div class="col-md-10">
                     <textarea class="form-control shadow" id="commentContent" name="content" rows="3"></textarea>
                 </div>
-                    <div class="col-md-3">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="col-md-2">
+                        <button type="submit" class="text-dark change btn-primary">Submit</button>
                     </div>
             </div>
             </form>
