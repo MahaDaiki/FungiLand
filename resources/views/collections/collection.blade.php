@@ -3,10 +3,37 @@
 @section('title', 'Collections')
 
 @section('content')
-@include('layouts.profilebar')
+<div class="counter">
+    <div class="row">
+        <div class="col-6 col-lg-3">
+            <div class="count-data text-center">
+                <a href="{{ route('profile', ['userId' => $users->id]) }}"><img src="{{ asset('assets/images/files.png') }}" width="100" alt="posts"></a>
+                <p class="m-0px font-w-600">My Posts</p>
+            </div>
+        </div>
+        <div class="col-6 col-lg-3 ">
+            <div class="count-data text-center actives  ">
+                <a href="{{ route('collections.index', ['user' => $users->id]) }}" class=""><img src="{{ asset('assets/images/collections.png') }}" width="100" alt="collections"  class=" "></a>
+                <p class="m-0px font-w-600">My Collections</p>
+            </div>
+        </div>
+        <div class="col-6 col-lg-3">
+            <div class="count-data text-center  ">
+                <a href="{{ route('saved-posts.index', ['userid' => $users->id]) }}"><img src="{{ asset('assets/images/saved.png') }}" width="100" alt="saved" ></a>
+                <p class="m-0px font-w-600">Saved Posts</p>
+            </div>
+        </div>
+        <div class="col-6 col-lg-3">
+            <div class="count-data text-center">
+                <a href="{{ route('settings', ['user' => Auth::user()]) }}"><img src="{{ asset('assets/images/settings.png') }}" width="100" alt="settings"></a>
+                <p class="m-0px font-w-600">Settings</p>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container">
     <button class=" btn-primary float-right" data-toggle="modal" data-target="#addCollectionModal">
-        <img src="assets/images/add2.png" width="70" alt="+">
+        <img src="{{ asset('assets/images/add2.png')}}" width="70" alt="+">
     </button>
 </div>
 @include('layouts.errorhandle')
@@ -22,9 +49,9 @@
                         <p>Visibility: {{ $collection->is_public ? 'Public' : 'Private' }}</p>
                         <div class="d-flex justify-content-between">
                             <button class="change shadow btn-primary" data-toggle="modal" data-target="#editCollectionModal{{ $collection->id }}">
-                                <img src="assets/images/edit.jpg" width="30" class="rounded shadow" alt="edit">
+                                <img src="{{ asset('assets/images/edit.jpg') }}" width="30" class="rounded shadow" alt="edit">
                             </button>
-                            <a href="{{ route('collections.show', $collection->id) }}">View Collection</a>
+                            <a href="{{ route('collections.show', ['id' => $collection->id, 'userId' => $users->id]) }}">View Collection</a>
                             <button class="change btn-danger shadow" data-toggle="modal" data-target="#confirmDeleteModal{{ $collection->id }}">
                                 Delete
                             </button>

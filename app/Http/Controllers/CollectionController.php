@@ -4,16 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CollectionsRequest;
 use App\Models\Collection;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CollectionController extends Controller
 {
 
-    public function index()
+    public function index($user)
     {
-        $collections = Collection::where('user_id', auth()->id())->get();
-        return view('collections.collection', compact('collections'));
+        $users = User::findOrFail($user); 
+        if ($user == auth()->id()) {
+
+            $collections = Collection::where('user_id', $user)->get();
+        } else {
+            $collections = Collection::where('user_id', $user)->where('is_public', true)->get();
+        }
+        
+        return view('collections.collection', compact('collections','users'));
     }
+    
 
     public function store(CollectionsRequest $request){
 
@@ -26,16 +35,17 @@ class CollectionController extends Controller
 
     return back()->with('success', 'Collection created successfully');
 }
-public function show($id)
+public function show($id, $userId)
 {
+    $user = User::findOrFail($userId);
     $collection = Collection::with('collectionContent')->findOrFail($id);
-
     if ($collection->user_id != auth()->id() && !$collection->is_public) {
         return back()->with('error', 'Unauthorized');
     }
 
-    return view('collections.collectioncontent', compact('collection'));
+    return view('collections.collectioncontent', compact('collection', 'user'));
 }
+
 
 
 public function update(CollectionsRequest $request, $id)

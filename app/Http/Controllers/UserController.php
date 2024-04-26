@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ChangePasswordRequest;
+use App\Http\Requests\settingsRequests;
 use App\Mail\ForgotPasswordMail;
 use App\Models\Category;
 use App\Models\Comment;
@@ -14,7 +16,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+
 
 class UserController extends Controller
 {
@@ -33,64 +37,41 @@ class UserController extends Controller
         }
         
     
- public function forgot_show()
- {
-     return view('Auth.forgotpassword');
- }
- public function reset($token)
- {
-     $user = User::where('remember_token', $token)->first();
- 
-     if (!empty($user)) {
-         $data['user'] = $user;
-         $data['token'] = $token; 
-         return view('Auth.resetpassword', $data);
-     } else {
-         abort(404);
-     }
- }
- public function forgot_password(Request $request)
- {
-     $request->validate([
-         'email' => 'required|email',
-     ]);
+        public function settings(){
+            $user = Auth::user();
+            return view('Auth.settings',compact('user'));
+        }
+    //     public function updateProfile(settingsRequests $request)
+    // {
+    //     $user = Auth::user();
 
-     $email = $request->input('email');
-     $user = User::where('email', $email)->first();
-     if(!empty($user))
-     {
-         $user->remember_token = Str::random(40);
-         $user->save();
+    //     $user->name = $request->input('name');
+    //     $user->email = $request->input('email');
+    //     $user->description = $request->input('description');
+    //     if ($request->hasFile('image')) {
+    //         if ($user->profilepic) {
+    //             Storage::delete($user->profilepic);
+    //         }
+    //         $path = $request->file('image')->store('profile_pictures', 'public');
+    //         $user->profilepic = $path;
+    //     }
 
-         Mail::to($user->email)->send(new ForgotPasswordMail($user));
-         
-         return back()->withErrors([
-             'email'=> 'Check your email'
-             ])->onlyInput('email');
-     }else{
-         return back()->withErrors([
-             'email'=> 'Email not found'
-             ])->onlyInput('email');
-     }
- }
- public function post_reset($token, Request $request)
- {
-     $user = User::where('remember_token','=',$token)->first();
-     if(!empty($user))
-     {
-         if($request->password == $request->confirm_password)
-         {
-             $user->password = Hash::make($request->password);
-             $user->remember_token = Str::random(40);
-             $user->save();
+    //     $user->save();
 
-             return redirect()->route('Auth.login'); 
+    //     return redirect()->back()->with('success', 'Profile updated successfully.');
+    // }
+    // public function changePassword(ChangePasswordRequest $request)
+    // {
+    //     $user = Auth::user();
 
-         }else{
-             return redirect()->back()->with('error', 'password error');
-         }
-     }else{
-         abort(404);
-     }
- } 
-}
+    //     if (!Hash::check($request->current_password, $user->password)) {
+    //         return redirect()->back()->with('error', 'Current password is incorrect.');
+    //     }
+    //     $user->password = Hash::make($request->new_password);
+    //     $user->save();
+
+    //     return redirect()->back()->with('success', 'Password changed successfully.');
+    // }
+    }
+
+

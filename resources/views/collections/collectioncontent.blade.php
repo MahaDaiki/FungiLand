@@ -5,8 +5,8 @@
 @section('content')
 <div class="col-6 col-lg-3">
     <div class="count-data text-center float-left">
-        <a href="{{route('collections.index')}}"><img src="../assets/images/collections.png" width="100" alt="posts"></a>
-        <p class="m-0px font-w-600">My collections</p>
+        <a href="{{ route('collections.index', ['user' => $user->id]) }}"><img src="{{ asset('../assets/images/collections.png') }}" width="100" alt="posts"></a>
+        <p class="m-0px font-w-600">Collections</p>
     </div>
 </div>
 <div class="col-md-4 mb-3 mx-auto mt-4">
@@ -23,7 +23,7 @@
     <div class="row mt-3">
         <div class="col-md-12">
             <button type="button" class="btn-primary float-right" data-toggle="modal" data-target="#addContentModal">
-                <img src="../assets/images/add2.png" width="70" alt="+">
+                <img src="{{ asset('../assets/images/add2.png') }}" width="70" alt="+">
             </button>
         </div>
     </div>

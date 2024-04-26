@@ -18,6 +18,10 @@
   }
 }
 
+.red{
+  color: #B73E3E;
+  
+}
 
 .spin-image {
   animation: spin 8s linear infinite; 
@@ -55,6 +59,17 @@ body{
 a {
     color: #B73E3E; 
  
+}
+
+.actives {
+  /* background-color: #B73E3E; */
+  box-shadow: 0 0 10px #B73E3E;
+  transition: box-shadow 0.3s ease;
+  border-radius: 2rem;
+}
+
+.actives:hover {
+  box-shadow: 0 0 20px #B73E3E;
 }
 
 a:visited {
@@ -206,6 +221,9 @@ a:hover, a:focus, a:active {
 /* .site-navigation.show ul {
     right: 0;
 } */
+input{
+  font-family: 'Times New Roman', Times, serif;
+}
 
 .site-navigation ul li {
     display: block;
@@ -425,7 +443,8 @@ margin-top:   3rem;
   }
 
   .form-control {
-    border-color: #ced4da;
+    /* border-color: #ced4da; */
+    color: #000000;
     border-radius: 5px;
   }
 

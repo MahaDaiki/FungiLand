@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequests;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Requests\PostRequests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -28,21 +29,21 @@ class PostController extends Controller
         return view('posts',compact('mosttags','mostcategories','posts','user')); 
     }
 
-    public function postbyuser(){
-        $user = Auth::user();
-        $userId = Auth::id();
+    public function postByUser($userId){
+        $user = User::findOrFail($userId);
         $posts = Post::where('user_id', $userId)->get();
         $categories = Category::all();
         $tags = Tag::all();
         $userPosts = Post::withCount('likes', 'comments', 'saves')
-        ->where('user_id', $user->id)
-        ->get();
+            ->where('user_id', $userId)
+            ->get();
         $totalLikes = $userPosts->sum('likes_count');
         $totalComments = $userPosts->sum('comments_count');
         $totalSaved = $userPosts->sum('saves_count');
         $totalPosts = $userPosts->count();
-        return view('profile', compact('posts','categories','tags','user', 'totalLikes', 'totalComments', 'totalSaved', 'totalPosts'));
+        return view('profile', compact('posts', 'categories', 'tags', 'user', 'totalLikes', 'totalComments', 'totalSaved', 'totalPosts'));
     }
+    
 
     public function create(){
         $categories = Category::all();

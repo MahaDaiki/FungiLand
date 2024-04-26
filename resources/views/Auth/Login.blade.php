@@ -26,12 +26,12 @@
                                     <input type="password" class="form-control input" id="password" name="password" required>
                                 </div>
                                 <div class="ml-4">
-                                <div class="form-group form-check">
+                                {{-- <div class="form-group form-check">
                                     <input type="checkbox" class="form-check-input" id="rememberMe" name="remember">
                                     <label class="form-check-label" for="rememberMe">Remember Me</label>
-                                </div>
+                                </div> --}}
                                 <div class="form-group">
-                                    <a href="">Forgot Password?</a>
+                                    <a href="{{ '/forgotpassword' }}">Forgot Password?</a>
                                 </div>
                             </div>
                                 <div class="form-group text-right">

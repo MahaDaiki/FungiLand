@@ -68,7 +68,7 @@
                         <div class="container mb-4">
                             <h4 class="text-center">{{ $post->title }}</h4>
 
-                            <small class="text ml-4">By <a href="#"><strong>{{ $post->user->name }}</strong></a> | Post on {{ $post->created_at }} |{{ $post->type }}|
+                            <small class="text ml-4">By <a href="{{ route('profile', ['userId' => $post->user->id ]) }}"><strong>{{ $post->user->name }}</strong></a> | Post on {{ $post->created_at }} |{{ $post->type }}|
                                  {{ $post->category->name }}</small>
                             <p class="m-top-sm m-bottom-sm">
                                 {{ $post->content }}

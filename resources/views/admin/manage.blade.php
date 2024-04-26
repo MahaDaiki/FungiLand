@@ -96,7 +96,7 @@
                                             <tr>
                                                 <th>Post ID</th>
                                                 <th>Title</th>
-                                                <th>Content</th>
+                                                <th>Post Author</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
@@ -105,7 +105,7 @@
                                             <tr>
                                                 <td>{{ $post->id }}</td>
                                                 <td>{{ $post->title }}</td>
-                                                <td>{{ $post->content }}</td>
+                                                <td>{{ $post->user->name }}</td>
                                                 <td>
                                                     <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
                                                         @csrf

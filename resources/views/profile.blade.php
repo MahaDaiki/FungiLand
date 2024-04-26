@@ -1,8 +1,6 @@
-@include('layouts.nav')
 @extends('layouts.app')
 @section('title', 'profile')
-
-
+@include('layouts.nav')
 @section('content')
 <section class="section about-section " id="about">
     <div class="container">
@@ -10,7 +8,7 @@
             <div class="col-lg-6">
                 <div class="about-text go-to">
                     <h3 class="dark-color">{{ $user->name }}</h3>
-                    <h6 class="theme-color lead">{{ $user->description }}</p>
+                    <h6 class="theme-color lead">{{ $user->description }}</h6>
                     <div class="row about-list">
                         <div class="col-md-6">
                             {{-- <div class="media">
@@ -23,8 +21,6 @@
                                 <label>E-mail</label>
                                 <p>{{ $user->email }}</p>
                             </div>
-                          
-
                         </div>
                     </div>
                 </div>
@@ -32,35 +28,61 @@
             <div class="col-lg-6">
                 <div class="about-avatar ml-3" id="image-with-border">
                     <div class="profile-container">
-                        <img src="{{ $user->profilepic }}" class="profile-pic" alt="profile picture" />
+                        <img src="{{ asset($user->profilepic) }}" class="profile-pic" alt="profile picture" />
                         <div class="profile-border"></div>
-                      </div>
+                    </div>
                 </div>
             </div>
-            
         </div>
-        @include('layouts.profilebar')
-    </div> 
+        <div class="counter">
+            <div class="row">
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center actives">
+                        <a href="{{ route('profile', ['userId' => $user->id]) }}"><img src="{{ asset('assets/images/files.png') }}" width="100" alt="posts"></a>
+                        <p class="m-0px font-w-600">My Posts</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                        <a href="{{ route('collections.index', ['user' => $user->id]) }}"><img src="{{ asset('assets/images/collections.png') }}" width="100" alt="collections"></a>
+                        <p class="m-0px font-w-600">My Collections</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                        <a href="{{ route('saved-posts.index', ['userid' => $user->id]) }}"><img src="{{ asset('assets/images/saved.png') }}" width="100" alt="saved"></a>
+                        <p class="m-0px font-w-600">Saved Posts</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                        <a href="{{ route('settings', ['user' => Auth::user()]) }}"><img src="{{ asset('assets/images/settings.png') }}" width="100" alt="settings"></a>
+                        <p class="m-0px font-w-600">Settings</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
 </section>
 <div class="container ">
-    <a class="float-right" href="{{ '/create' }}"><img src="assets/images/add2.png" width="70" alt="+"></a>
+    <a class="float-right" href="{{ '/create' }}"><img src="{{ asset('assets/images/add2.png') }}" width="70" alt="+"></a>
 </div>
 @include('layouts.errorhandle')
 
-   
 <div class="container">
     <div class="row">
         <div class="col-md-8">
             @forelse ($posts as $post)
             <div class="text-right m-3">
-                <a href="{{ route('posts.edit', $post->id) }}" class="change rounded-pill shadow"><img src="assets/images/edit.jpg" width="60" class="rounded-pill shadow" alt="edit"></a>
+                <a href="{{ route('posts.edit', $post->id) }}" class="change rounded-pill shadow"><img src="{{ asset('assets/images/edit.jpg') }}" width="60" class="rounded-pill shadow" alt="edit"></a>
                 <button class="btn-danger change rounded-pill shadow" data-toggle="modal" data-target="#deleteModal{{ $post->id }}">Delete</button>
-            </div> 
+            </div>
             <div class="panel blog-container">
                 <div class="panel-body">
                     <div class="d-flex justify-content-center align-items-center">
                         <a class="" href="#">
-                            <img src="/storage/{{ $post->image }}" width='200' class="img-fluid" alt="Photo">
+                            <img src="{{ asset('storage/'.$post->image) }}" width='200' class="img-fluid" alt="Photo">
                             <div class="image-overlay"></div>
                         </a>
                     </div>
@@ -142,9 +164,4 @@
         </div>
     </div>
 </div>
-
-
-    
-   
-
 @endsection
