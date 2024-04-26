@@ -76,7 +76,7 @@
                            @foreach ($post->tags as $tag)
                                 <a href="" class="ml-2 ">#{{ $tag->name }}</a>
                             @endforeach
-                            <a href="#" class="float-right"><i class="fa fa-angle-double-right"></i> Continue reading</a>
+                            <a href="{{ route('postdetails', $post) }}"class="float-right"><i class="fa fa-angle-double-right"></i> Continue reading</a>
 
                             @if(auth()->check())
                             @if($post->likes->contains('user_id', auth()->user()->id))

@@ -38,7 +38,7 @@ Route::get('/', function () {
 });
     // search/filter
 Route::middleware(['guest'])->group(function () {
-    Route::post('/search', [SearchController::class, 'search']);
+  
 
     Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
     Route::post('/register', [RegisterController::class, 'register']);
@@ -48,19 +48,20 @@ Route::middleware(['guest'])->group(function () {
 
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-    Route::get('/profile', [UserController::class, 'index'])->name('profile');
-
-    Route::get('/posts', [PostController::class, 'index'])->name('posts');
-
     Route::get('/forgotpassword', [ForgotPasswordController::class, 'forgetPassword'])->name('forgot_password_show');
     Route::post('/forgotpassword', [ForgotPasswordController::class, 'forgetPasswordPost'])->name('forgotpassword');
 
     Route::get('/resetpassword/{token}', [ForgotPasswordController::class, 'resetPassword'])->name('reset_password');
     Route::post('/resetpassword/{token}', [ForgotPasswordController::class, 'resetPasswordPost'])->name('post_reset');
+});
+    Route::post('/search', [SearchController::class, 'search']);
+    Route::get('/profile', [UserController::class, 'index'])->name('profile');
+
+    Route::get('/posts', [PostController::class, 'index'])->name('posts');
 
     Route::get('posts/{post}', [CommentController::class, 'show'])->name('postdetails');
 
-});
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile/{userId}', [PostController::class, 'postByUser'])->name('profile');
 
@@ -98,6 +99,9 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/settings/{user}/update', [settingsController::class, 'update'])->name('usersupdate');
     Route::put('/settings/{user}/update-password', [settingsController::class, 'updatePassword'])->name('updatePassword');
 
+    Route::post('posts/{post}', [CommentController::class, 'store'])->name('comments.store');
+    Route::put('posts/{post}/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
+    Route::delete('posts/{post}/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
     
     

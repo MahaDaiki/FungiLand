@@ -18,6 +18,7 @@
         </div>
     </div>
     <script src="{{ asset('assets/js/likes.js')}}"></script>
+    <script src="{{ asset('assets/js/comments.js')}}"></script>
     <script src="{{ asset('assets/js/search.js') }}"></script>
     <script src="{{ asset('assets/js/Saved.js') }}"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
