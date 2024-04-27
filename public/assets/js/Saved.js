@@ -21,9 +21,10 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(response => response.json())
             .then(data => {
-                if (data.saved) {
-                    btn.nextElementSibling.style.display = 'inline-block';
-                    btn.style.display = 'none';
+                if (data.success) {
+                    toggleButtons(btn);
+                } else {
+                    console.error('Save request failed');
                 }
             })
             .catch(error => console.error(error));
@@ -47,12 +48,20 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(response => response.json())
             .then(data => {
-                if (!data.saved) {
-                    btn.previousElementSibling.style.display = 'inline-block';
-                    btn.style.display = 'none';
+                if (data.success) {
+                    toggleButtons(btn);
+                } else {
+                    console.error('Unsave request failed');
                 }
             })
             .catch(error => console.error(error));
         });
     });
+
+ 
+    function toggleButtons(btn) {
+        btn.style.display = 'none';
+        var siblingBtn = btn.parentElement.querySelector(btn.classList.contains('save-btn') ? '.unsave-btn' : '.save-btn');
+        siblingBtn.style.display = 'inline';
+    }
 });

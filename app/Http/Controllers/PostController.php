@@ -23,7 +23,7 @@ class PostController extends Controller
         ->orderByDesc('posts_count')
         ->limit(5) 
         ->get();
-        $posts = Post::paginate(5);
+        $posts = Post::all();
         $user = Auth::user();
         
         return view('posts',compact('mosttags','mostcategories','posts','user')); 

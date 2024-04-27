@@ -48,20 +48,8 @@
                             </a>  
                         
                         </div>
-                        @if(auth()->check())
-                        @php
-                            $saved = $post->saves->contains('user_id', auth()->user()->id);
-                        @endphp
-                        <span class="post-save text-muted tooltip-test float-right" data-toggle="tooltip" data-original-title="{{ $saved ? 'You saved this post!' : 'Save this post!' }}">
-                            <button class="unsave-btn change save" data-post-id="{{ $post->id }}" data-save-url="{{ route('posts.save', $post) }}" data-unsave-url="{{ route('posts.unsave', $post) }}" style="{{ $saved ? '' : 'display: none;' }}"><i class="fa fa-bookmark text-warning"></i></button>
-                            <button class="save-btn change save" data-post-id="{{ $post->id }}" data-save-url="{{ route('posts.save', $post) }}" data-unsave-url="{{ route('posts.unsave', $post) }}" style="{{ $saved ? 'display: none;' : '' }}"><i class="fa fa-bookmark"></i></button>
-                        </span>
-                    @else
-                        <span class="post-save text-muted tooltip-test float-right" data-toggle="tooltip" data-original-title="Save this post!">
-                            <button class="save-btn change save" data-post-id="{{ $post->id }}" data-save-url="{{ route('posts.save', $post) }}" data-unsave-url="{{ route('posts.unsave', $post) }}"><i class="fa fa-bookmark"></i></button>
-                            <button class="unsave-btn change save" data-post-id="{{ $post->id }}" style="display: none;"><i class="fa fa-bookmark text-primary"></i></button>
-                        </span>
-                    @endif
+                       @include("layouts.savebutton")
+                    
                     
                     
                     

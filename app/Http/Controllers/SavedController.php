@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Saved;
 use App\Models\Tag;
 use App\Models\User;
+use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,5 +40,14 @@ class SavedController extends Controller
     
         return response()->json(['success' => true, 'saved' => false]);
     }
+    // public function unsaveinprofile(Request $request, Post $post)
+    // {
+    //     $saved = Saved::where('user_id', auth()->id())->where('post_id', $post->id)->first();
+    //     if ($saved) {
+    //         $saved->delete();
+    //     }
+    
+    //     return back()->with('success', 'Post unsaved');
+    // }
     
 }

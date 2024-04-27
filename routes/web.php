@@ -76,6 +76,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/posts/{post}/save', [SavedController::class, 'save'])->name('posts.save');
     Route::delete('/posts/{post}/unsave', [SavedController::class, 'unsave'])->name('posts.unsave');
+      
+    // Route::delete('/posts/{post}/unsaveprofile', [SavedController::class, 'unsaveinprofile'])->name('posts.unsave');
 
     Route::get('/SavedPosts/{userid}',[SavedController::class, 'index'])->name('saved-posts.index');
 

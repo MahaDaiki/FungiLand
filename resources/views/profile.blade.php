@@ -88,14 +88,11 @@
                     </div>
                     <div class="container mb-4">
                         <h4 class="text-center">{{ $post->title }}</h4>
-                        <small class="text ml-4">By <a href="#"><strong> {{ $post->user->name }}</strong></a> | Post on {{ $post->created_at }}| 58 comments</small>
+                        <small class="text ml-4">By <a href="#"><strong> {{ $post->user->name }}</strong></a> | Post on {{ $post->created_at }}</small>
                         <p class="m-top-sm m-bottom-sm">
                             {{ $post->content }}
                         </p>
-                        <a href="#"><i class="fa fa-angle-double-right"></i> Continue reading</a>
-                        <span class="post-like text-muted tooltip-test" data-toggle="tooltip" data-original-title="I like this post!">
-                            <i class="fa fa-heart"></i> <span class="like-count">25</span>
-                        </span>
+                        <a href="{{ route('postdetails', $post) }}"class="float-right"><i class="fa fa-angle-double-right"></i> Continue reading</a>
                     </div>
                 </div>
             </div>
