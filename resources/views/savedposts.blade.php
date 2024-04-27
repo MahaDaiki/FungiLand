@@ -17,6 +17,7 @@
                 <p class="m-0px font-w-600">My Collections</p>
             </div>
         </div>
+        @if(auth()->check() && auth()->user()->id === $user->id)
         <div class="col-6 col-lg-3">
             <div class="count-data text-center actives">
                 <a href="{{ route('saved-posts.index', ['userid' => $user->id]) }}"><img src="{{ asset('assets/images/saved.png') }}" width="100" alt="saved"></a>
@@ -29,42 +30,40 @@
                 <p class="m-0px font-w-600">Settings</p>
             </div>
         </div>
+        @endif
     </div>
 </div>
 
-
-@forelse ($savedposts as $post)
-    @include('layouts.errorhandle')
-    <div class="col-md-12 mb-4">
-        <div class="panel blog-container">
-            <div class="panel-body">
-                <div class="image-wrapper">
-                    <a class="d-flex justify-content-center align-items-center pt-2" href="#">
-                        <img src="{{ asset($post->image) }}" width="400" alt="Photo of Blog">
-                        <div class="image-overlay"></div> 
-                    </a>
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            @forelse ($posts as $post)
+            @include('layouts.errorhandle')
+            <div class="col-md-12 mb-4">
+                <div class="panel blog-container">
+                    <div class="panel-body">
+                        <div class="image-wrapper">
+                            <a class="d-flex justify-content-center align-items-center pt-2" href="#">
+                                {{-- <img src="{{ asset($post->image) }}" width="400" alt="Photo of Blog"> --}}
+                                <div class="image-overlay"></div> 
+                            </a>
+                        </div>
+                        <div class="">
+                            <h4 class="text-center">{{ $post->title }}</h4>
+                            <small class="text ml-4">By <a href="#"><strong>{{ $post->user->name }}</strong></a> | Post on {{ $post->created_at }} | {{ $post->type }}</small>
+                            <p class="m-top-sm m-bottom-sm">
+                                {{ $post->content }}
+                            </p>
+                            <form action="{{ route('saved-posts.remove', $post->id) }}" method="POST" class="float-right">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="change btn-danger">X</button>
+                            </form>
+                            <a href="{{ route('postdetails', $post) }}" class="float-right"><img src="{{ asset('assets/images/comments.png') }}" width="70" alt="Continue Reading"></a>
+                        </div>
+                    </div>  
                 </div>
-
-                {{-- Unsave Button --}}
-                {{-- <span class="post-save text-muted tooltip-test float-right" data-toggle="tooltip" data-original-title="Unsave this post!">
-                    <form action="{{ route('posts.unsave', $post) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class=" change save"><i class="fa fa-bookmark text-warning"></i></button>
-                    </form>
-                </span> --}}
-
-                <div class="container mb-4">
-                    <h4 class="text-center">{{ $post->title }}</h4>
-                    <small class="text ml-4">By <a href="#"><strong>{{ $post->user->name }}</strong></a> | Post on {{ $post->created_at }} | {{ $post->type }}</small>
-                    <p class="m-top-sm m-bottom-sm">
-                        {{ $post->content }}
-                    </p>
-                    <a href="{{ route('postdetails', $post) }}" class="float-right"><i class="fa fa-angle-double-right"></i> Continue reading</a>
-                </div>
-            </div>  
-        </div>
-    </div>
-@empty
-    <h1>No Posts Found</h1>
-@endforelse
+            </div>
+            @empty
+                <h1>No Posts Found</h1>
+            @endforelse

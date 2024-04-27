@@ -42,12 +42,14 @@
                         <p class="m-0px font-w-600">My Posts</p>
                     </div>
                 </div>
+             
                 <div class="col-6 col-lg-3">
                     <div class="count-data text-center">
                         <a href="{{ route('collections.index', ['user' => $user->id]) }}"><img src="{{ asset('assets/images/collections.png') }}" width="100" alt="collections"></a>
-                        <p class="m-0px font-w-600">My Collections</p>
+                        <p class="m-0px font-w-600"> Collections</p>
                     </div>
                 </div>
+                @if(auth()->check() && auth()->user()->id === $user->id)
                 <div class="col-6 col-lg-3">
                     <div class="count-data text-center">
                         <a href="{{ route('saved-posts.index', ['userid' => $user->id]) }}"><img src="{{ asset('assets/images/saved.png') }}" width="100" alt="saved"></a>
@@ -60,13 +62,16 @@
                         <p class="m-0px font-w-600">Settings</p>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
         
     </div>
 </section>
 <div class="container ">
+    @if(auth()->check() && auth()->user()->id === $user->id)
     <a class="float-right" href="{{ '/create' }}"><img src="{{ asset('assets/images/add2.png') }}" width="70" alt="+"></a>
+    @endif
 </div>
 @include('layouts.errorhandle')
 
@@ -74,10 +79,12 @@
     <div class="row">
         <div class="col-md-8">
             @forelse ($posts as $post)
+            @if(auth()->check() && auth()->user()->id === $post->user_id)
             <div class="text-right m-3">
                 <a href="{{ route('posts.edit', $post->id) }}" class="change rounded-pill shadow"><img src="{{ asset('assets/images/edit.jpg') }}" width="60" class="rounded-pill shadow" alt="edit"></a>
                 <button class="btn-danger change rounded-pill shadow" data-toggle="modal" data-target="#deleteModal{{ $post->id }}">Delete</button>
             </div>
+            @endif
             <div class="panel blog-container">
                 <div class="panel-body">
                     <div class="d-flex justify-content-center align-items-center">
@@ -161,4 +168,5 @@
         </div>
     </div>
 </div>
+@include('layouts.footer')
 @endsection

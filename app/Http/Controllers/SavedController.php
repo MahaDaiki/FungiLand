@@ -13,13 +13,24 @@ use Illuminate\Support\Facades\Auth;
 
 class SavedController extends Controller
 {
-    public function index($userId)
+    public function index()
     {
-        $user = User::findOrFail($userId);
-        $savedposts = Saved::where('user_id', $userId)->with('post')->get();
+
+        $userId = Auth::id();
+
+        $savedPosts = Saved::where('user_id', $userId)->get();
+        $posts = [];
+        foreach ($savedPosts as $savedPost) {
+            $postId = $savedPost->post_id;
+            $post = Post::find($postId);
+            if ($post) {
+                $posts[] = $post;
+            }
+        }
         $category = Category::all();
         $tags = Tag::all();
-          return view('savedposts', compact('savedposts','category','tags','user')); 
+        $user = Auth::user(); 
+        return view('savedposts', compact('savedPosts', 'category', 'tags', 'user','posts'));
     }
     public function save(Request $request, Post $post)
     {
@@ -40,14 +51,17 @@ class SavedController extends Controller
     
         return response()->json(['success' => true, 'saved' => false]);
     }
-    // public function unsaveinprofile(Request $request, Post $post)
-    // {
-    //     $saved = Saved::where('user_id', auth()->id())->where('post_id', $post->id)->first();
-    //     if ($saved) {
-    //         $saved->delete();
-    //     }
-    
-    //     return back()->with('success', 'Post unsaved');
-    // }
+    public function removeSavedPost($id)
+    {
+        $savedPost = Saved::findOrFail($id);
+
+        if ($savedPost->user_id !== Auth::id()) {
+            return redirect()->back()->with('error', 'You are not authorized to remove this saved post.');
+        }
+
+        $savedPost->delete();
+
+        return redirect()->back()->with('success', 'Saved post removed successfully');
+    }
     
 }

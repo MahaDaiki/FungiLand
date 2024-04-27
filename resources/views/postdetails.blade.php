@@ -72,7 +72,7 @@
                         <form action="{{ route('comments.destroy', ['post' => $post, 'comment' => $comment]) }}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="change btn-danger float-right">Delete</button>
+                            <button type="submit" onclick="return confirm('are you sure ?')" class="change btn-danger float-right">Delete</button>
                         </form>
                         @endif
                     </div>
@@ -114,5 +114,5 @@
         </div>
     </div>
 </div>
-
+@include('layouts.footer')
 @endsection

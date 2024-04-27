@@ -79,7 +79,7 @@ Route::middleware(['auth'])->group(function () {
       
     // Route::delete('/posts/{post}/unsaveprofile', [SavedController::class, 'unsaveinprofile'])->name('posts.unsave');
 
-    Route::get('/SavedPosts/{userid}',[SavedController::class, 'index'])->name('saved-posts.index');
+    
 
     Route::get('/collections/{user}', [CollectionController::class, 'index'])->name('collections.index');
     Route::get('/collections/{id}/show/{userId}', [CollectionController::class, 'show'])->name('collections.show');
@@ -97,16 +97,23 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/settings',[UserController::class, 'settings'])->name('settings');
     // Route::post('/updateuser',[UserController::class, ,'updateProfile'])->name('userupdate');
     // Route::post('/passwordchange',[UserController::class, 'changePassword'])->name('changepassword');
-    Route::get('settings/{user}', [settingsController::class, 'edit'])->name('settings');
-    Route::put('/settings/{user}/update', [settingsController::class, 'update'])->name('usersupdate');
-    Route::put('/settings/{user}/update-password', [settingsController::class, 'updatePassword'])->name('updatePassword');
 
+ 
     Route::post('posts/{post}', [CommentController::class, 'store'])->name('comments.store');
     Route::put('posts/{post}/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
     Route::delete('posts/{post}/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
+    Route::delete('saved-posts/{id}', [SavedController::class, 'removeSavedPost'])->name('saved-posts.remove');
     
+});
+Route::middleware(['CheckUserMatch'])->group(function () {
+    Route::get('settings/{user}', [settingsController::class, 'edit'])->name('settings');
+    Route::put('/settings/{user}/update', [settingsController::class, 'update'])->name('usersupdate');
+    Route::put('/settings/{user}/update-password', [settingsController::class, 'updatePassword'])->name('updatePassword');
     
+    Route::get('/SavedPosts/{userid}',[SavedController::class, 'index'])->name('saved-posts.index');
+   
+
 });
 
 

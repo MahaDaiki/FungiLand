@@ -30,5 +30,6 @@
 
 
 
-
+@include('layouts.footer')
 @endsection
+
