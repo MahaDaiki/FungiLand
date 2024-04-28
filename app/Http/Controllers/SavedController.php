@@ -53,12 +53,15 @@ class SavedController extends Controller
     }
     public function removeSavedPost($id)
     {
-        $savedPost = Saved::findOrFail($id);
+        
+                $savedPost = Saved::where('post_id', $id)
+                ->where('user_id', auth()->id())
+                ->firstOrFail();
 
         if ($savedPost->user_id !== Auth::id()) {
             return redirect()->back()->with('error', 'You are not authorized to remove this saved post.');
         }
-
+        
         $savedPost->delete();
 
         return redirect()->back()->with('success', 'Saved post removed successfully');

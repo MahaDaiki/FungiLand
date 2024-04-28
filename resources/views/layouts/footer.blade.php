@@ -1,17 +1,8 @@
 
-    {{-- <style>
-        .footer{
-            background: #B73E3E;
-            position: absolute;
-    bottom: 30px;
-    /* top: 1400px; */
-    width: 100%;
-
-        }
-    </style> --}}
-
-    <footer class="footer  py-3 " style="background: #B73E3E;">
-        <div class="container text-center">
-          <span class="text-dark">© 2024 FungiLand.</span>
-        </div>
-      </footer>
+<footer class="footer py-3" style="background: #B73E3E;">
+  <a href="https://discord.gg/NAMHKmxA" class="text-dark"><img src="{{ asset('assets/images/discord.png') }}" width="100"  alt="Discord"></a>
+  <div class="container text-center mt-2">
+    
+    <span class="text-dark fs-5">&#169; @ FungiLand-2024.</span>
+  </div>
+</footer>

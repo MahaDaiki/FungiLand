@@ -36,7 +36,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="text-center">
-                <img src="storage/{{ asset($user->profilepic) }}" class="rounded-circle img-fluid" alt="Profile Picture" style="width: 200px; height: 200px;">
+                <img src="/storage/{{ $user->profilepic}}" class="rounded-circle img-fluid" alt="Profile Picture" style="width: 200px; height: 200px;">
                 <h3 class="red h2">{{ $user->name }}</h3>
                 <p class="fs-4">My Email: {{ $user->email }}</p>
                 <p class="fs-5">Description: {{ $user->description }}</p>
@@ -108,9 +108,15 @@
                                 <i class="bi bi-lock"></i>
                             </span>
                         </div>
-                        <input type="password" class="form-control" id="current_password" name="current_password" required>
+                        <input type="password" class="form-control password-input" id="current_password" name="current_password" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text toggle-password">
+                                <i class="bi bi-eye"></i>
+                            </span>
+                        </div>
                     </div>
                 </div>
+                
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="new_password">New Password</label>
@@ -120,7 +126,12 @@
                                     <i class="bi bi-lock"></i>
                                 </span>
                             </div>
-                            <input type="password" class="form-control" id="new_password" name="new_password" required>
+                            <input type="password" class="form-control password-input" id="new_password" name="new_password" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text toggle-password">
+                                    <i class="bi bi-eye"></i>
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group col-md-6">
@@ -131,10 +142,16 @@
                                     <i class="bi bi-lock"></i>
                                 </span>
                             </div>
-                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                            <input type="password" class="form-control password-input" id="confirm_password" name="confirm_password" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text toggle-password">
+                                    <i class="bi bi-eye"></i>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
+                
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <button type="submit" class="change mb-2 mt-2 text-dark btn-primary">Change Password</button>

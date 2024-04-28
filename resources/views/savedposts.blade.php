@@ -54,7 +54,7 @@
                             <p class="m-top-sm m-bottom-sm">
                                 {{ $post->content }}
                             </p>
-                            <form action="{{ route('saved-posts.remove', $post->id) }}" method="POST" class="float-right">
+                            <form action="{{ route('savedposts.remove', $post->id) }}" method="POST" class="float-right">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="change btn-danger">X</button>

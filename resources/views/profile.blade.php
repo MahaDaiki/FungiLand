@@ -41,7 +41,7 @@
             <div class="col-lg-6">
                 <div class="about-avatar ml-3" id="image-with-border">
                     <div class="profile-container">
-                        <img src="{{ asset($user->profilepic) }}" class="profile-pic" alt="profile picture" />
+                        <img src="/storage/{{ $user->profilepic}}" class="profile-pic" alt="profile picture" />
                         <div class="profile-border"></div>
                     </div>
                 </div>

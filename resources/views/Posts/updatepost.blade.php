@@ -76,25 +76,40 @@
     </div>
 </div>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const selectElement = document.getElementById('postTags');
-        const selectedTagsContainer = document.getElementById('selectedTagsContainer');
-  
-        selectElement.addEventListener('change', function() {
-            Array.from(this.selectedOptions).forEach(option => {
-                const tagDiv = document.createElement('div');
-                tagDiv.classList.add('selected-tag');
-                tagDiv.textContent = option.text;
-                const removeButton = document.createElement('button');
-                removeButton.textContent = 'X';
-                removeButton.onclick = function() {
-                    option.selected = false;
-                    tagDiv.remove();
-                };
-                tagDiv.appendChild(removeButton);
-                selectedTagsContainer.appendChild(tagDiv);
-            });
+document.addEventListener('DOMContentLoaded', function () {
+    const selectElement = document.getElementById('postTags');
+    const selectedTagsContainer = document.getElementById('selectedTagsContainer');
+
+    // Function to add a selected tag to the container
+    function addSelectedTag(option) {
+        const tagDiv = document.createElement('div');
+        tagDiv.classList.add('selected-tag');
+        tagDiv.textContent = option.text;
+        tagDiv.setAttribute('data-value', option.value); // Add data attribute for identification
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'X';
+        removeButton.onclick = function() {
+            option.selected = false; // Deselect the option
+            tagDiv.remove(); // Remove the tag from the container
+        };
+        tagDiv.appendChild(removeButton);
+        selectedTagsContainer.appendChild(tagDiv);
+    }
+
+    // Add already selected tags to the container on page load
+    Array.from(selectElement.selectedOptions).forEach(option => {
+        addSelectedTag(option);
+    });
+
+    selectElement.addEventListener('change', function() {
+        Array.from(this.selectedOptions).forEach(option => {
+            // Check if the tag is already selected
+            if (!selectedTagsContainer.querySelector(`div[data-value="${option.value}"]`)) {
+                addSelectedTag(option);
+            }
         });
     });
+});
+
   </script>
 @endsection

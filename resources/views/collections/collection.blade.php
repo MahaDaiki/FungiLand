@@ -17,6 +17,7 @@
                 <p class="m-0px font-w-600">My Collections</p>
             </div>
         </div>
+        @if(auth()->check() && auth()->user()->id === $users->id)
         <div class="col-6 col-lg-3">
             <div class="count-data text-center  ">
                 <a href="{{ route('saved-posts.index', ['userid' => $users->id]) }}"><img src="{{ asset('assets/images/saved.png') }}" width="100" alt="saved" ></a>
@@ -30,7 +31,9 @@
             </div>
         </div>
     </div>
+    @endif
 </div>
+
 <div class="container">
     <button class=" btn-primary float-right" data-toggle="modal" data-target="#addCollectionModal">
         <img src="{{ asset('assets/images/add2.png')}}" width="70" alt="+">

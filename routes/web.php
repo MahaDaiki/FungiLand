@@ -103,7 +103,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('posts/{post}/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
     Route::delete('posts/{post}/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
-    Route::delete('saved-posts/{id}', [SavedController::class, 'removeSavedPost'])->name('saved-posts.remove');
+    Route::delete('saved-posts/{id}', [SavedController::class, 'removeSavedPost'])->name('savedposts.remove');
     
 });
 Route::middleware(['CheckUserMatch'])->group(function () {
