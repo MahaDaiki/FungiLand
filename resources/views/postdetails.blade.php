@@ -33,7 +33,7 @@
                     <h2 class="card-title">{{ $post->title }}</h2>
                 </div>
                 <div class="card-body">
-                    <p class="card-text" id="postContent">{{ $post->content }}</p>
+                    <p class="card-text fs-4" id="postContent">{{ $post->content }}</p>
                 </div>
                 <div class="card-footer">
                     <small class="text ml-4">By <a href="{{ route('profile', ['userId' => $post->user->id ]) }}"><strong>{{ $post->user->name }}</strong></a> | Post on {{ $post->created_at }} | {{ $post->type }}</small>

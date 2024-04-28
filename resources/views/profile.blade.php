@@ -21,6 +21,19 @@
                                 <label>E-mail</label>
                                 <p>{{ $user->email }}</p>
                             </div>
+                        </div> 
+                     
+                        <div class="col-md-6">
+                            <div class="media">
+                                @auth 
+                                @if(auth()->user()->role === 'admin')
+                                <label><img src="{{ asset('assets/images/admindash.png') }}" width="50" alt="" class=""></label>
+                                
+                  
+                        <a href="{{ route('admin.index') }}" class="p-2 shadow change btn-primary">Admin Panel</a>
+                    @endif
+                @endauth
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -93,13 +106,14 @@
                             <div class="image-overlay"></div>
                         </a>
                     </div>
-                    <div class="container mb-4">
+                    <div class="container mb-4 p-5">
                         <h4 class="text-center">{{ $post->title }}</h4>
                         <small class="text ml-4">By <a href="#"><strong> {{ $post->user->name }}</strong></a> | Post on {{ $post->created_at }}</small>
                         <p class="m-top-sm m-bottom-sm">
                             {{ $post->content }}
                         </p>
-                        <a href="{{ route('postdetails', $post) }}"class="float-right"><i class="fa fa-angle-double-right"></i> Continue reading</a>
+                        <div class="mb-5">
+                        <a href="{{ route('postdetails', $post) }}"class="float-right"><img src="{{ asset('assets/images/comments.png') }}" width="70" alt="Continue Reading"></a></div>
                     </div>
                 </div>
             </div>
@@ -133,10 +147,10 @@
         <div class="col-md-4">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card mb-4 forma">
+                    <div class="card  forma">
                         <div class="card-body">
                             <h5 class="card-title">Total Posts</h5>
-                            <p class="card-text">{{ $totalPosts }}</p>
+                            <p class="card-text"> <img src="{{ asset('assets/images/stats.png') }}" alt="" width="70"> {{ $totalPosts }}</p>
                         </div>
                     </div>
                 </div>
@@ -144,7 +158,7 @@
                     <div class="card mb-4 forma">
                         <div class="card-body">
                             <h5 class="card-title">Total likes on my posts</h5>
-                            <p class="card-text">{{ $totalLikes }}</p>
+                            <p class="card-text"><img src="{{ asset('assets/images/stats.png') }}" alt="" width="70">{{ $totalLikes }}</p>
                         </div>
                     </div>
                 </div>
@@ -152,7 +166,7 @@
                     <div class="card mb-4 forma">
                         <div class="card-body">
                             <h5 class="card-title">Total saved</h5>
-                            <p class="card-text">{{ $totalSaved }}</p>
+                            <p class="card-text"><img src="{{ asset('assets/images/stats.png') }}" alt="" width="70">{{ $totalSaved }}</p>
                         </div>
                     </div>
                 </div>
@@ -160,7 +174,7 @@
                     <div class="card mb-4 forma">
                         <div class="card-body">
                             <h5 class="card-title">Total Comments on my posts </h5>
-                            <p class="card-text">{{ $totalComments }}</p>
+                            <p class="card-text"><img src="{{ asset('assets/images/stats.png') }}" alt="" width="70">{{ $totalComments }}</p>
                         </div>
                     </div>
                 </div>

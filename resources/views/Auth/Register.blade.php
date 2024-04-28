@@ -50,17 +50,41 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            
                             <label for="password">Password</label>
-                            <input type="password" class="form-control input @error('password') is-invalid @enderror" id="password" name="password" >
+                            <div class="row">
+                                <div class="col">
+                                  <div class="input-group">
+                                    <input type="password" class="form-control password-input input @error('password') is-invalid @enderror" id="password" name="password">
+                                    <div class="input-group-append">
+                                      <span class="input-group-text toggle-password">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>                              
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
+                          
                         </div>
                         <div class="form-group">
                             <label for="confirmPassword">Confirm Password</label>
-                            <input type="password" class="form-control input" id="confirmPassword" name="password_confirmation" >
+                            <div class="row">
+                                <div class="col">
+                                  <div class="input-group">
+                            <input type="password" class="form-control password-input input" id="confirmPassword" name="password_confirmation" >
+                            <div class="input-group-append">
+                                <span class="input-group-text toggle-password">
+                                  <i class="fa fa-eye" aria-hidden="true"></i>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>                
                         </div>
                         <div class="form-group text-right">
                             <button type="submit" class="btn gradient">   <img width="50" class="mr-3 spin" src="assets/images/button.png" alt=""><span>Register</span></button>

@@ -23,7 +23,18 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input type="password" class="form-control input" id="password" name="password" required>
+                                    <div class="row">
+                                        <div class="col">
+                                          <div class="input-group">
+                                    <input type="password" class="form-control password-input input" id="password" name="password" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text toggle-password">
+                                          <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>                
                                 </div>
                                 <div class="ml-4">
                                 {{-- <div class="form-group form-check">

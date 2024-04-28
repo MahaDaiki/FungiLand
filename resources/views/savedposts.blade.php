@@ -44,11 +44,11 @@
                     <div class="panel-body">
                         <div class="image-wrapper">
                             <a class="d-flex justify-content-center align-items-center pt-2" href="#">
-                                {{-- <img src="{{ asset($post->image) }}" width="400" alt="Photo of Blog"> --}}
+                                <img src="/storage/{{ $post->image  }}" width="400" alt="Photo of Blog">
                                 <div class="image-overlay"></div> 
                             </a>
                         </div>
-                        <div class="">
+                        <div class="p-5">
                             <h4 class="text-center">{{ $post->title }}</h4>
                             <small class="text ml-4">By <a href="#"><strong>{{ $post->user->name }}</strong></a> | Post on {{ $post->created_at }} | {{ $post->type }}</small>
                             <p class="m-top-sm m-bottom-sm">
@@ -59,7 +59,7 @@
                                 @method('DELETE')
                                 <button type="submit" class="change btn-danger">X</button>
                             </form>
-                            <a href="{{ route('postdetails', $post) }}" class="float-right"><img src="{{ asset('assets/images/comments.png') }}" width="70" alt="Continue Reading"></a>
+                            <a href="{{ route('postdetails', $post) }}" class="float-right "><img src="{{ asset('assets/images/comments.png') }}" width="70" alt="Continue Reading"></a>
                         </div>
                     </div>  
                 </div>

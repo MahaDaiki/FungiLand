@@ -53,18 +53,18 @@
                     
                     
                     
-                        <div class="container mb-4">
-                            <h4 class="text-center">{{ $post->title }}</h4>
+                        <div class="container mb-4 p-5">
+                            <h1 class="text-center">{{ $post->title }}</h1>
 
                             <small class="text ml-4">By <a href="{{ route('profile', ['userId' => $post->user->id ]) }}"><strong>{{ $post->user->name }}</strong></a> | Post on {{ $post->created_at }} |{{ $post->type }}|
                                  {{ $post->category->name }}</small>
-                            <p class="m-top-sm m-bottom-sm">
+                            <p class="fs-4">
                                 {{ $post->content }}
                             </p>
                            @foreach ($post->tags as $tag)
                                 <a href="" class="ml-2 ">#{{ $tag->name }}</a>
                             @endforeach
-                            <a href="{{ route('postdetails', $post) }}"class="float-right"><i class="fa fa-angle-double-right"></i> Continue reading</a>
+                            <a href="{{ route('postdetails', $post) }}"class="float-right mb-5"><img src="{{ asset('assets/images/comments.png') }}" width="70" alt="Continue Reading"></a>
 
                             @if(auth()->check())
                             @if($post->likes->contains('user_id', auth()->user()->id))
@@ -80,12 +80,9 @@
                                     <button class="unlike-btn change like" data-post-id="{{ $post->id }}" data-url="{{ route('posts.unlike', $post) }}" style="display: none;"><i class="fa fa-heart text-danger"></i></button>
                                 </span>
                             @endif
-                        @else
-                            <span class="post-like text-muted tooltip-test" data-toggle="tooltip" data-original-title="Like this post!">
-                                <span class="like-count">{{ $post->likes->count() }}</span>
-                                <button class="like-btn change like" data-post-id="{{ $post->id }}" data-url="{{ route('posts.like', $post) }}"><i class="fa fa-heart"></i></button>
-                                <button class="unlike-btn change like" data-post-id="{{ $post->id }}" data-url="{{ route('posts.unlike', $post) }}" style="display: none;"><i class="fa fa-heart text-danger"></i></button>
-                            </span>
+                       
+                               
+                           
                         @endif
                         
                         

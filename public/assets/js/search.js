@@ -12,6 +12,7 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
     .then(data => {
         const postsContainer = document.querySelector('.searched');
         var allposts = document.querySelector('.allposts');
+        const postDetailsRoute = "/posts"; 
         postsContainer.innerHTML = '';
         if (data.length === 0) {
             allposts.classList.remove('d-none');
@@ -30,15 +31,16 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
                                     </a>
                                 </div>
                                 <div class="container mb-4">
-                                    <h4 class="text-center">${post.title}</h4>
+                                    <h1 class="text-center">${post.title}</h1>
                                     <small class="text ml-4">By <a href="#"><strong>${post.user.name}</strong></a> | Post on ${post.created_at} | ${post.type} |${post.category.name}</small>
-                                    <p class="m-top-sm m-bottom-sm">
+                                    <p class="fs-4">
                                         ${post.content}
                                     </p>`;
                 post.tags.forEach(tag => {
                     postHTML += `<a href="" class="ml-2">#${tag.name}</a>`;
                 });
-                postHTML += `<a href="#" class="float-right"><i class="fa fa-angle-double-right"></i> Continue reading</a>
+                postHTML += ` <a href="${postDetailsRoute}/${post.id}" class="float-right mb-5"><img src="{{ asset('assets/images/comments.png') }}" width="70" alt="Continue Reading"></a>
+
                                 <span class="post-like text-muted tooltip-test" data-toggle="tooltip" data-original-title="I like this post!">
                                     <span class="like-count">${post.likes_count}</span>
                                     <button class="like-btn change like" data-post-id="${post.id}" data-url="{{ route('posts.like', $post) }}"><i class="fa fa-heart"></i></button>
