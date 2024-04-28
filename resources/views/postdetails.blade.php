@@ -54,11 +54,11 @@
                  <div class="card commentcard">
                     <div class="card-body shadow ">
                         <div class="d-flex align-items-center">
-                            <div class="rounded-circle overflow-hidden mr-2 shadow" style="width: 24px; height: 24px;">
-                                <img src="{{ $comment->user->profilepic }}" alt="User Profile Picture" class="w-100 h-100">
+                            <div class="rounded-circle overflow-hidden mr-2 shadow" style="width: 50px; height: 50px;">
+                                <img src="/storage/{{ $comment->user->profilepic }}" alt="User Profile Picture" class="w-100 h-100">
                             </div>
                             <h3> {{ $comment->user->name }}: </h3>
-                            <p class="card-text fs-5"> &nbsp; {{ $comment->content }}</p>
+                            <p class="card-text fs-5 mt-4"> &nbsp; {{ $comment->content }}</p>
                         </div>
                         @if(auth()->check() && auth()->user()->id === $comment->user_id)
                         <form action="{{ route('comments.update', ['post' => $post, 'comment' => $comment]) }}" method="POST" style="display: none;" class="edit-comment-form">

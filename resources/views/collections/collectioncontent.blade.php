@@ -41,7 +41,7 @@
                         <p class="card-footer">Description: {{ $content->description }}</p>
                       <div class="text-center">
                         <button type="button" class=" btn-primary change" data-toggle="modal" data-target="#editContentModal{{ $content->id }}">
-                            <img src="../assets/images/edit.jpg" width="30" class="rounded shadow" alt="edit">
+                            <img src="{{ asset('assets/images/edit.jpg') }}" width="30" class="rounded shadow" alt="edit">
                         </button>
                         <button type="button" class=" btn-danger change" data-toggle="modal" data-target="#deleteContentModal{{ $content->id }}">
                          X
