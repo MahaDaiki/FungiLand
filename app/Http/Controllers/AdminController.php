@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
     public function index(){
-        $categories = Category::withCount('posts')->paginate(10,['*'],'category');
+        $categories = Category::withCount('posts')->orderBy('name')->paginate(10,['*'],'category');
       
-        $tags = Tag::withCount('posts')->paginate(10,['*'],'tags');        
+        $tags = Tag::withCount('posts')->orderBy('name')->paginate(10,['*'],'tags');        
         
         return view('admin.dashboard',compact('categories','tags'));
     }

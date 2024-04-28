@@ -17,6 +17,7 @@
             @yield('content')
         </div>
     </div>
+    
     <script src="{{ asset('assets/js/likes.js')}}"></script>
     <script src="{{ asset('assets/js/comments.js')}}"></script>
     <script src="{{ asset('assets/js/search.js') }}"></script>
@@ -35,4 +36,5 @@
     </script>
 
 </body>
+
 </html>

@@ -82,6 +82,7 @@
       </div>
     </div>
   </div>
+  @include('layouts.footer')
   <script>
     document.addEventListener('DOMContentLoaded', function () {
         const selectElement = document.getElementById('postTags');

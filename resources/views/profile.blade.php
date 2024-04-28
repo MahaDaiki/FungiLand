@@ -98,6 +98,8 @@
                 <button class="btn-danger change rounded-pill shadow" data-toggle="modal" data-target="#deleteModal{{ $post->id }}">Delete</button>
             </div>
             @endif
+            <div class="text-right">
+                <a href="{{ route('postdetails', $post) }}"class=""><img src="{{ asset('assets/images/comments.png') }}" width="70" alt="Continue Reading"></a></div>
             <div class="panel blog-container">
                 <div class="panel-body">
                     <div class="d-flex justify-content-center align-items-center">
@@ -112,9 +114,9 @@
                         <p class="m-top-sm m-bottom-sm">
                             {{ $post->content }}
                         </p>
-                        <div class="mb-5">
-                        <a href="{{ route('postdetails', $post) }}"class="float-right"><img src="{{ asset('assets/images/comments.png') }}" width="70" alt="Continue Reading"></a></div>
+                        
                     </div>
+                  
                 </div>
             </div>
             <div class="modal fade" id="deleteModal{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ $post->id }}" aria-hidden="true">
