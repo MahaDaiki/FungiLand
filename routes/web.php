@@ -36,7 +36,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-    // search/filter
+
+Route::fallback(function(){
+    return abort(404, 'NOT FOUND!.');;
+});
+   
 Route::middleware(['guest'])->group(function () {
   
 
