@@ -5,13 +5,15 @@ document.addEventListener('DOMContentLoaded', function() {
     var unsaveButtons = document.querySelectorAll('.unsave-btn');
 
     saveButtons.forEach(function(btn) {
+   
         btn.addEventListener('click', function(e) {
             e.preventDefault();
             var postId = this.getAttribute('data-post-id');
-            var saveUrl = this.getAttribute('data-save-url');
-            var unsaveUrl = this.getAttribute('data-unsave-url');
+            // var saveUrl = this.getAttribute('data-save-url');
+            // var unsaveUrl = this.getAttribute('data-unsave-url');
+            var Url = `http://127.0.0.1:8000/posts/${postId}/save`
 
-            fetch(saveUrl, {
+            fetch(Url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -32,13 +34,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     unsaveButtons.forEach(function(btn) {
+    
+
         btn.addEventListener('click', function(e) {
             e.preventDefault();
             var postId = this.getAttribute('data-post-id');
-            var saveUrl = this.getAttribute('data-save-url');
-            var unsaveUrl = this.getAttribute('data-unsave-url');
+            // var saveUrl = this.getAttribute('data-save-url');
+            var Url = `http://127.0.0.1:8000/posts/${postId}/unsave`
 
-            fetch(unsaveUrl, {
+           
+            fetch(Url, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -60,6 +65,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
  
     function toggleButtons(btn) {
+        console.log('click on btns',btn)
+  
         btn.style.display = 'none';
         var siblingBtn = btn.parentElement.querySelector(btn.classList.contains('save-btn') ? '.unsave-btn' : '.save-btn');
         siblingBtn.style.display = 'inline';

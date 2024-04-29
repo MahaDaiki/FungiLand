@@ -69,15 +69,15 @@
                             @if(auth()->check())
                             @if($post->likes->contains('user_id', auth()->user()->id))
                                 <span class="post-like text-muted tooltip-test" data-toggle="tooltip" data-original-title="You liked this post!">
-                                    <span class="like-count">{{ $post->likes->count() }}</span>
-                                    <button class="unlike-btn change like" data-post-id="{{ $post->id }}" data-url="{{ route('posts.unlike', $post) }}"><i class="fa fa-heart text-danger"></i></button>
-                                    <button class="like-btn change like" data-post-id="{{$post->id }}" data-url="{{ route('posts.like', $post) }}" style="display: none;"><i class="fa fa-heart"></i></button>
+                                    <span class="like-count">{{ $post->likes->count() }}</span> <button class="like-btn change like" data-post-id="{{$post->id }}"  style="display: none;"><i class="fa fa-heart"></i></button>
+                                    <button class="unlike-btn change like" data-post-id="{{ $post->id }}" ><i class="fa fa-heart text-danger"></i></button>
+                                   
                                 </span>
                             @else
                                 <span class="post-like text-muted tooltip-test" data-toggle="tooltip" data-original-title="Like this post!">
                                     <span class="like-count">{{ $post->likes->count() }}</span>
-                                    <button class="like-btn change like" data-post-id="{{ $post->id }}" data-url="{{ route('posts.like', $post) }}"><i class="fa fa-heart"></i></button>
-                                    <button class="unlike-btn change like" data-post-id="{{ $post->id }}" data-url="{{ route('posts.unlike', $post) }}" style="display: none;"><i class="fa fa-heart text-danger"></i></button>
+                                    <button class="like-btn change like" data-post-id="{{ $post->id }}" ><i class="fa fa-heart"></i></button>
+                                    <button class="unlike-btn change like" data-post-id="{{ $post->id }}"  style="display: none;"><i class="fa fa-heart text-danger"></i></button>
                                 </span>
                             @endif
                        

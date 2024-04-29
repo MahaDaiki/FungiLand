@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
             var postId = this.getAttribute('data-post-id');
-            var url = this.getAttribute('data-url');
+            var url = `http://127.0.0.1:8000/posts/${postId}/like` ;
             var likeCountSpan = this.parentElement.querySelector('.like-count');
 
             fetch(url, {
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
             var postId = this.getAttribute('data-post-id');
-            var url = this.getAttribute('data-url');
+            var url = `http://127.0.0.1:8000/posts/${postId}/unlike`;
             var likeCountSpan = this.parentElement.querySelector('.like-count');
 
             fetch(url, {
