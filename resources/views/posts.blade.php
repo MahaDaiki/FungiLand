@@ -38,12 +38,12 @@
             @forelse ($posts as $post)
             @include('layouts.errorhandle')
             <div class="col-md-12 mb-4">
-                <div class="panel blog-container">
+                <div class="panel blog-container rounded shadow">
                     <div class="panel-body">
                         <div class="image-wrapper">
                             <a class="d-flex justify-content-center align-items-center pt-2" href="#">
                              
-                                <img src="/storage/{{ $post->image }}" width="400" alt="Photo of Blog">
+                                <img class=" rounded" src="/storage/{{ $post->image }}" width="400" alt="Photo of Blog">
                                 <div class="image-overlay"></div> 
                             </a>  
                         

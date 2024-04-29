@@ -33,12 +33,13 @@
     </div>
     @endif
 </div>
-
+@if(auth()->check() && auth()->user()->id === $users->id)
 <div class="container">
     <button class=" btn-primary float-right" data-toggle="modal" data-target="#addCollectionModal">
         <img src="{{ asset('assets/images/add2.png')}}" width="70" alt="+">
     </button>
 </div>
+@endif
 @include('layouts.errorhandle')
 
 <div class="container">
@@ -51,13 +52,17 @@
                         <p class="card-text">{{ $collection->description }}</p>
                         <p>Visibility: {{ $collection->is_public ? 'Public' : 'Private' }}</p>
                         <div class="d-flex justify-content-between">
+                            @if(auth()->check() && auth()->user()->id === $collection->user_id)
                             <button class="change shadow btn-primary" data-toggle="modal" data-target="#editCollectionModal{{ $collection->id }}">
                                 <img src="{{ asset('assets/images/edit.jpg') }}" width="30" class="rounded shadow" alt="edit">
                             </button>
-                            <a href="{{ route('collections.show', ['id' => $collection->id, 'userId' => $users->id]) }}">View Collection</a>
+                            @endif
+                            <a href="{{ route('collections.show', ['id' => $collection->id, 'userId' => $users->id]) }}" class="font-weight-bold">View Collection</a>
+                            @if(auth()->check() && auth()->user()->id === $collection->user_id)
                             <button class="change btn-danger shadow" data-toggle="modal" data-target="#confirmDeleteModal{{ $collection->id }}">
                                 Delete
                             </button>
+                            @endif
                             
                         </div>
                     </div>

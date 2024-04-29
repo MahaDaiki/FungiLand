@@ -51,11 +51,11 @@
               <div class="form-group col-md-6">
                   <label for="postTags">Tags</label>
                   <div id="selectedTagsContainer"></div>
-                  <select class="form-control" id="postTags" name="tag_ids[]" multiple>
-                      @foreach($tags as $tag)
-                      <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-                      @endforeach
-                  </select>
+                  <select multiple class="form-control" id="postTags" name="tag_ids[]">
+                    @foreach($tags as $tag)
+                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                    @endforeach
+                </select>
               </div>
           </div>
           <div class="form-group">

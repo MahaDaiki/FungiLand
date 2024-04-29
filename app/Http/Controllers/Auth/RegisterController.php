@@ -17,11 +17,10 @@ class RegisterController extends Controller
 
     public function register(Register $request)
     {
-        $profilePicPath = null;
+        $profilePicPath = 'assets/images/profilepic.jpg';
         if ($request->hasFile('profilepic')) {
             $profilePicPath = $request->file('profilepic')->store('assets/images', 'public');
         }
-    
         User::create([
             'name' => $request->name,
             'email' => $request->email,

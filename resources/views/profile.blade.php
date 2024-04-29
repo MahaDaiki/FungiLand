@@ -133,7 +133,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary change" data-dismiss="modal">Cancel</button>
-                            <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                            <form action="{{ route('postuserdestroy', $post->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn">Delete</button>

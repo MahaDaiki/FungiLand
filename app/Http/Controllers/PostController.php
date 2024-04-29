@@ -31,7 +31,7 @@ class PostController extends Controller
 
     public function postByUser($userId){
         $user = User::findOrFail($userId);
-        $posts = Post::where('user_id', $userId)->get();
+        $posts = Post::where('user_id', $userId)->orderBy('created_at', 'desc')->get();
         $categories = Category::all();
         $tags = Tag::all();
         $userPosts = Post::withCount('likes', 'comments', 'saves')
@@ -52,7 +52,9 @@ class PostController extends Controller
     }
     public function add(PostRequests $request)
     {
-            $validatedData = $request->validated();
+
+        $validatedData = $request->validated();
+     
             
             if ($request->hasFile('image')) {
                 $profilePicPath = $request->file('image')->store('assets/images', 'public');
@@ -103,10 +105,10 @@ class PostController extends Controller
     
     public function destroy($id) {
         $post = Post::findOrFail($id); 
-    
+  
         $post->delete(); 
     
-        return redirect()->route('posts.index')->with('success', 'Post deleted successfully');
+        return back()->with('success', 'Post deleted successfully');
     }
     
     

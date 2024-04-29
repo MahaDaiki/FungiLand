@@ -72,8 +72,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/create', [PostController::class, 'create'])->name('create');
     Route::post('/posts/create', [PostController::class, 'add'])->name('posts.add');
     Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
-    Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update');
-    Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+    Route::put('/postsupdate/{id}', [PostController::class, 'update'])->name('posts.update');
+    Route::delete('/postsdelete/{id}', [PostController::class, 'destroy'])->name('postuserdestroy');
 
     Route::post('/posts/{post}/like', [LikesController::class, 'like'])->name('posts.like');
     Route::delete('/posts/{post}/unlike', [LikesController::class, 'unlike'])->name('posts.unlike');

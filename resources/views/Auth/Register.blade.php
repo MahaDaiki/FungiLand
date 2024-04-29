@@ -24,8 +24,8 @@
                                     <div class="profile-picture">
                                         <img src="assets/images/icon.jpg" alt="Profile Picture Icon">
                                     </div>
-                                    <input type="file" class="d-none" id="profile_picture" name="image">
-                                </label>
+                                    <input type="file" class="d-none" id="profile_picture" name="profilepic">
+                                </label>r
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group mt-4">

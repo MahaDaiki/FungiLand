@@ -21,11 +21,13 @@
 <div class="container">
     @include('layouts.errorhandle')
     <div class="row mt-3">
+        @if(auth()->check() && auth()->user()->id === $collection->user_id)
         <div class="col-md-12">
             <button type="button" class="btn-primary float-right" data-toggle="modal" data-target="#addContentModal">
                 <img src="{{ asset('../assets/images/add2.png') }}" width="70" alt="+">
             </button>
         </div>
+        @endif
     </div>
     <div class="row mt-3">
         @forelse ($collection->collectionContent as $content)
@@ -40,12 +42,14 @@
                         @endif
                         <p class="card-footer">Description: {{ $content->description }}</p>
                       <div class="text-center">
+                        @if(auth()->check() && auth()->user()->id === $content->user_id)
                         <button type="button" class=" btn-primary change" data-toggle="modal" data-target="#editContentModal{{ $content->id }}">
                             <img src="{{ asset('assets/images/edit.jpg') }}" width="30" class="rounded shadow" alt="edit">
                         </button>
                         <button type="button" class=" btn-danger change" data-toggle="modal" data-target="#deleteContentModal{{ $content->id }}">
                          X
                         </button>
+                        @endif
                     </div>
                     </div>
                 </div>
