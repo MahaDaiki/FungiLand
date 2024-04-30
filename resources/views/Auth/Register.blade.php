@@ -25,7 +25,7 @@
                                         <img src="assets/images/icon.jpg" alt="Profile Picture Icon">
                                     </div>
                                     <input type="file" class="d-none" id="profile_picture" name="profilepic">
-                                </label>r
+                                </label>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group mt-4">

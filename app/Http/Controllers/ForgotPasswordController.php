@@ -52,7 +52,7 @@ class ForgotPasswordController extends Controller
         $request->validate([
             'email' => "required|email|exists:users",
             'password' => "required|string|confirmed",
-            'confirmpassword' => "required"
+            'password_confirmation' => "required"
         ]);
 
         $updatePassword = PasswordReset::where('email', $request->email)
